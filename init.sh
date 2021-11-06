@@ -70,6 +70,7 @@ fi
 # Full list of services
 # gcloud services list --available
 echo "=> Enabling required APIs"
+gcloud --project $project_id services enable cloudbuild.googleapis.com
 gcloud --project $project_id services enable cloudresourcemanager.googleapis.com
 gcloud --project $project_id services enable compute.googleapis.com
 gcloud --project $project_id services enable iam.googleapis.com
@@ -99,18 +100,20 @@ gcloud projects add-iam-policy-binding $project_id \
 
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/iam.roleAdmin"
+  --role="roles/iam.securityAdmin"
 
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/iam.securityAdmin"
+  --role="roles/secretmanager.secretAccessor"
 
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/servicenetworking.networksAdmin"
 
-if [ "$CREATE_SERVICE_ACCOUNT_KEY" = true ]; then
-  echo "=> Creating key for service account, check key.json file in the root of this project"
-  gcloud iam service-accounts keys create key.json \
-    --iam-account "terraform@${project_id}.iam.gserviceaccount.com"
-fi
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/container.admin"
+
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/iam.roleAdmin"
