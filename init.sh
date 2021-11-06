@@ -14,13 +14,13 @@
 # export PROJECT_NAME="simplycubed-builder-dev"
 # export ORGANIZATION_ID="1013393027722"
 # export BILLING_ACCOUNT_ID="false"
-# export CREATE_SERVICE_ACCOUNT_KEY="true"
+# export CREATE_SERVICE_ACCOUNT_KEY="false"
 #
 # PROD: simplycubed-builder-prod
 # export PROJECT_NAME="simplycubed-builder-prod"
 # export ORGANIZATION_ID="1013393027722"
 # export BILLING_ACCOUNT_ID="false"
-# export CREATE_SERVICE_ACCOUNT_KEY="true"
+# export CREATE_SERVICE_ACCOUNT_KEY="false"
 #
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY
 #
