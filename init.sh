@@ -10,8 +10,15 @@
 # gcloud projects list
 # gcloud alpha billing accounts list --filter=open=true
 #
-# export PROJECT_NAME="devops-night"
-# export ORGANIZATION_ID=""
+# DEV: simplycubed-builder-dev
+# export PROJECT_NAME="simplycubed-builder-dev"
+# export ORGANIZATION_ID="1013393027722"
+# export BILLING_ACCOUNT_ID="false"
+# export CREATE_SERVICE_ACCOUNT_KEY="true"
+#
+# PROD: simplycubed-builder-prod
+# export PROJECT_NAME="simplycubed-builder-prod"
+# export ORGANIZATION_ID="1013393027722"
 # export BILLING_ACCOUNT_ID="false"
 # export CREATE_SERVICE_ACCOUNT_KEY="true"
 #
@@ -31,7 +38,6 @@ PROJECT_NAME=$1
 ORGANIZATION_ID=$2
 BILLING_ACCOUNT_ID=$3
 CREATE_SERVICE_ACCOUNT_KEY=$4
-SUPPORT_EMAIL=$5
 
 echo ""
 echo "Preparing Terraform resources and service account with the following values:"
@@ -40,7 +46,6 @@ echo "PROJECT_NAME: $PROJECT_NAME"
 echo "ORGANIZATION_ID: $ORGANIZATION_ID"
 echo "BILLING_ACCOUNT_ID: $BILLING_ACCOUNT_ID"
 echo "CREATE_SERVICE_ACCOUNT_KEY: $CREATE_SERVICE_ACCOUNT_KEY"
-echo "SUPPORT_EMAIL: $SUPPORT_EMAIL"
 echo "==================================================="
 echo ""
 echo "Continuing in 5 seconds. Ctrl+C to cancel"
