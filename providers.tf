@@ -9,17 +9,3 @@ provider "google-beta" {
   project     = var.project_id
   credentials = var.credentials
 }
-
-# terraform {
-#   required_providers {
-#     statuscake = {
-#       source  = "StatusCakeDev/statuscake"
-#       version = "1.0.1"
-#     }
-#   }
-# }
-
-# provider "statuscake" {
-#   username = var.statuscake_user
-#   apikey   = var.statuscake_token
-# }

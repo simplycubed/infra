@@ -28,12 +28,3 @@ variable "cloudsql_password" {
   description = "Password for cloudsql instance"
   sensitive   = true
 }
-
-# variable "statuscake_user" {
-#   description = "Statuscake user"
-# }
-
-# variable "statuscake_token" {
-#   description = "Statuscake token"
-#   sensitive   = true
-# }
