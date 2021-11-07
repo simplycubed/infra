@@ -75,6 +75,7 @@ gcloud --project $project_id services enable cloudresourcemanager.googleapis.com
 gcloud --project $project_id services enable compute.googleapis.com
 gcloud --project $project_id services enable iam.googleapis.com
 gcloud --project $project_id services enable oslogin.googleapis.com
+gcloud --project $project_id services enable run.googleapis.com
 gcloud --project $project_id services enable secretmanager.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
 
@@ -102,11 +103,23 @@ echo "=> Setting Terraform IAM permissions"
 
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/container.admin"
+
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/editor"
 
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/iam.roleAdmin"
+
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/iam.securityAdmin"
+
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/run.admin"
 
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
@@ -115,11 +128,3 @@ gcloud projects add-iam-policy-binding $project_id \
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/servicenetworking.networksAdmin"
-
-gcloud projects add-iam-policy-binding $project_id \
-  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/container.admin"
-
-gcloud projects add-iam-policy-binding $project_id \
-  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/iam.roleAdmin"
