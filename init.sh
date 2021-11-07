@@ -74,10 +74,11 @@ gcloud --project $project_id services enable cloudbuild.googleapis.com
 gcloud --project $project_id services enable cloudresourcemanager.googleapis.com
 gcloud --project $project_id services enable compute.googleapis.com
 gcloud --project $project_id services enable iam.googleapis.com
-gcloud --project $project_id services enable identitytoolkit.googleapis.com
 gcloud --project $project_id services enable oslogin.googleapis.com
 gcloud --project $project_id services enable secretmanager.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
+
+gcloud --project $project_id services enable identitytoolkit.googleapis.com
 
 # TODO: Monitor this new feature request to automate Enabling the Identity Platform
 echo "=> Need to manually 'Enable Identity Platform', this is a known limitation"
