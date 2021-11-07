@@ -28,3 +28,13 @@ variable "cloudsql_password" {
   description = "Password for cloudsql instance"
   sensitive   = true
 }
+
+variable "github_client_id" {
+  description = "GitHub Client ID"
+  sensitive   = true
+}
+
+variable "github_client_secret" {
+  description = "GitHub Client Secret"
+  sensitive   = true
+}
