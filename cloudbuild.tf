@@ -1,4 +1,23 @@
 #
+# golang
+#
+resource "google_cloudbuild_trigger" "push_golang_base_image" {
+  name = "push-golang-base-image"
+
+  github {
+    owner = "simplycubed"
+    name  = "golang"
+    push {
+      branch = "^main$"
+    }
+  }
+
+  filename = "cloudbuild.yaml"
+
+  tags = ["managed by terraform"]
+}
+
+#
 # node
 #
 resource "google_cloudbuild_trigger" "push_node_base_image" {
