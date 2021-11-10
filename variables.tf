@@ -38,3 +38,8 @@ variable "github_client_secret" {
   description = "GitHub Client Secret"
   sensitive   = true
 }
+
+variable frontend_image {
+  description = "frontend image"
+  value = "builder-web"
+}
