@@ -43,3 +43,8 @@ variable frontend_image {
   description = "frontend image"
   default = "builder-web"
 }
+
+variable api_image {
+   description = "API image"
+   default = "builder-api" 
+}
