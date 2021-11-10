@@ -7,7 +7,7 @@ module frontend {
   location = var.region
 }
 
-module frontend {
+module api {
   source = "garbetjie/cloud-run/google"
 
   # Required parameters
