@@ -3,6 +3,6 @@ module frontend {
 
   # Required parameters
   name = "frontend"
-  image = "gcr.io/"+var.project_id+"/"+var.frontend_image
+  image = "gcr.io/${var.project_id}/${var.frontend_image}"
   location = var.region
 }
