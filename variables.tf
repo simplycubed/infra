@@ -41,5 +41,5 @@ variable "github_client_secret" {
 
 variable frontend_image {
   description = "frontend image"
-  value = "builder-web"
+  default = "builder-web"
 }
