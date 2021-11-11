@@ -7,9 +7,9 @@ module frontend {
   location = var.region
 }
 
-resource "google_cloud_run_domain_mapping" "default" {
+resource "google_cloud_run_domain_mapping" "frontend" {
   location = var.region
-  name     = "www.${var.base_domain}"
+  name     = "build.${var.base_domain}"
 
   metadata {
     namespace = var.project_id
@@ -27,4 +27,17 @@ module api {
   name = "api"
   image = "asia.gcr.io/${var.project_id}/${var.api_image}"
   location = var.region
+}
+
+resource "google_cloud_run_domain_mapping" "api" {
+  location = var.region
+  name     = "api.${var.base_domain}"
+
+  metadata {
+    namespace = var.project_id
+  }
+
+  spec {
+    route_name = module.api.id
+  }
 }

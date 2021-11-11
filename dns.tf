@@ -7,7 +7,15 @@ module "dns" {
   domain     = "${var.base_domain}."
   recordsets = [
     {
-      name = "www"
+      name = "build"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
+    {
+      name = "api"
       type = "CNAME"
       ttl  = 60
       records = [
