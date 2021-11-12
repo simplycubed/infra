@@ -39,12 +39,12 @@ variable "github_client_secret" {
   sensitive   = true
 }
 
-variable frontend_image {
+variable "frontend_image" {
   description = "frontend image"
-  default = "builder-web"
+  default     = "builder-web"
 }
 
-variable api_image {
-   description = "API image"
-   default = "builder-api" 
+variable "api_image" {
+  description = "API image"
+  default     = "builder-api"
 }

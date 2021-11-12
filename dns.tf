@@ -22,5 +22,13 @@ module "dns" {
         "ghs.googlehosted.com.",
       ]
     },
+    {
+      name = "www"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "20913630.group30.sites.hubspot.net.",
+      ]
+    },
   ]
 }
