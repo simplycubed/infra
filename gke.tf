@@ -111,54 +111,54 @@ resource "kubernetes_namespace" "argo" {
 #   }
 # }
 
-# resource "helm_release" "prometheus_operator" {
-#   name      = "prometheus-operator"
-#   chart     = "helm/prometheus-operator"
-#   namespace = kubernetes_namespace.monitoring.id
-#   values = [
-#     file("./helm/prometheus-operator/values.yaml")
-#   ]
-#   set {
-#     name  = "prometheusLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
-#     value = google_compute_global_address.global_address[0].name
-#   }
-#   set {
-#     name  = "prometheusLocal.ingressIstio.hosts"
-#     value = "{${join(",", ["prometheus.${var.base_domain}"])}}"
-#   }
-#   set {
-#     name  = "alertmanagerLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
-#     value = google_compute_global_address.global_address[2].name
-#   }
-#   set {
-#     name  = "alertmanagerLocal.ingressIstio.hosts"
-#     value = "{${join(",", ["alert-manager.${var.base_domain}"])}}"
-#   }
-#   set {
-#     name  = "grafanaLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
-#     value = google_compute_global_address.global_address[1].name
-#   }
-#   set {
-#     name  = "grafanaLocal.ingressIstio.hosts"
-#     value = "{${join(",", ["grafana.${var.base_domain}"])}}"
-#   }
-#   set {
-#     name  = "prometheus-operator.grafana.grafana\\.ini.auth\\.google.client_id"
-#     value = var.grafana_oauth_client_id
-#   }
-#   set {
-#     name  = "prometheus-operator.alertmanager.config.receivers[0].pagerduty_configs[0].service_key"
-#     value = var.pagerduty_service_key
-#   }
-#   set {
-#     name  = "prometheus-operator.grafana.grafana\\.ini.auth\\.google.client_secret"
-#     value = var.grafana_oauth_client_secret
-#   }
-#   set {
-#     name  = "prometheus-operator.grafana.grafana\\.ini.server.root_url"
-#     value = "https://grafana.${var.base_domain}"
-#   }
-# }
+resource "helm_release" "prometheus_operator" {
+  name      = "prometheus-operator"
+  chart     = "helm/prometheus-operator"
+  namespace = kubernetes_namespace.monitoring.id
+  values = [
+    file("./helm/prometheus-operator/values.yaml")
+  ]
+  set {
+    name  = "prometheusLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
+    value = google_compute_global_address.global_address[0].name
+  }
+  set {
+    name  = "prometheusLocal.ingressIstio.hosts"
+    value = "{${join(",", ["prometheus.${var.base_domain}"])}}"
+  }
+  set {
+    name  = "alertmanagerLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
+    value = google_compute_global_address.global_address[2].name
+  }
+  set {
+    name  = "alertmanagerLocal.ingressIstio.hosts"
+    value = "{${join(",", ["alert-manager.${var.base_domain}"])}}"
+  }
+  set {
+    name  = "grafanaLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
+    value = google_compute_global_address.global_address[1].name
+  }
+  set {
+    name  = "grafanaLocal.ingressIstio.hosts"
+    value = "{${join(",", ["grafana.${var.base_domain}"])}}"
+  }
+  set {
+    name  = "prometheus-operator.grafana.grafana\\.ini.auth\\.google.client_id"
+    value = var.grafana_oauth_client_id
+  }
+  set {
+    name  = "prometheus-operator.alertmanager.config.receivers[0].pagerduty_configs[0].service_key"
+    value = var.pagerduty_service_key
+  }
+  set {
+    name  = "prometheus-operator.grafana.grafana\\.ini.auth\\.google.client_secret"
+    value = var.grafana_oauth_client_secret
+  }
+  set {
+    name  = "prometheus-operator.grafana.grafana\\.ini.server.root_url"
+    value = "https://grafana.${var.base_domain}"
+  }
+}
 
 # resource "helm_release" "argo_rollouts" {
 #   name       = "argo-rollouts"
