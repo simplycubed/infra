@@ -14,21 +14,6 @@ module "dns" {
         "ghs.googlehosted.com.",
       ]
     },
-    {
-      name = "api"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "www"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "20913630.group30.sites.hubspot.net.",
-      ]
-    },
+  
   ]
 }
