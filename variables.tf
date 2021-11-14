@@ -39,12 +39,14 @@ variable "github_client_secret" {
   sensitive   = true
 }
 
-variable frontend_image {
-  description = "frontend image"
-  default = "builder-web"
+variable "gke_initial_node_count"{
+  description = "initial count of gke cluster node"
 }
 
-variable api_image {
-   description = "API image"
-   default = "builder-api" 
+variable "gke_cluster_name"{
+   description = "name of gke cluster"
+}
+
+variable "gke_machine_type"{
+  description = "Machine types used in gke cluster"
 }
