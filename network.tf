@@ -39,7 +39,6 @@ locals {
     "grafana",
     "alert-manager",
     "argo-cd",
-    "sample-service"
   ]
 }
 
