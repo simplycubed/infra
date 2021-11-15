@@ -101,15 +101,15 @@ resource "kubernetes_namespace" "argo" {
 #   }
 # }
 
-# resource "kubernetes_secret" "repo_ssh_key" {
-#   metadata {
-#     name      = "repo-ssh-key"
-#     namespace = kubernetes_namespace.argo.id
-#   }
-#   data = {
-#     "sshPrivateKey" : var.env_repo_ssh_key
-#   }
-# }
+resource "kubernetes_secret" "repo_ssh_key" {
+  metadata {
+    name      = "repo-ssh-key"
+    namespace = kubernetes_namespace.argo.id
+  }
+  data = {
+    "sshPrivateKey" : var.env_repo_ssh_key
+  }
+}
 
 resource "helm_release" "prometheus_operator" {
   name      = "prometheus-operator"
@@ -157,74 +157,65 @@ resource "helm_release" "prometheus_operator" {
   }
 }
 
-# resource "helm_release" "argo_rollouts" {
-#   name       = "argo-rollouts"
-#   chart      = "argo-rollouts"
-#   repository = "https://argoproj.github.io/argo-helm"
-#   namespace  = kubernetes_namespace.argo.id
-# }
 
-# resource "helm_release" "argo_cd" {
-#   name      = "argo-cd"
-#   chart     = "./helm/argo-cd"
-#   namespace = kubernetes_namespace.argo.id
-#   values = [
-#     file("helm/argo-cd/values.yaml")
-#   ]
-#   set {
-#     name  = "argocdLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
-#     value = google_compute_global_address.global_address[3].name
-#   }
-#   set {
-#     name  = "argocdLocal.ingressIstio.hosts"
-#     value = "{${join(",", ["argo-cd.${var.base_domain}"])}}"
-#   }
-#   set {
-#     name  = "argocdLocal.rootApplication.repoUrl"
-#     value = var.env_repo_ssh_url
-#   }
-#   set {
-#     name  = "argo-cd.server.config.dex\\.config"
-#     value = <<EOT
-#        connectors:
-#        - config:
-#            issuer: https://accounts.google.com
-#            clientID: ${var.argocd_oauth_client_id}
-#            clientSecret: ${var.argocd_oauth_client_secret}
-#          type: oidc
-#          id: google
-#          name: Google
-#       EOT 
-#   }
-#   set {
-#     name  = "argo-cd.server.config.repositories"
-#     value = <<EOT
-#        - url: ${var.env_repo_ssh_url}
-#          sshPrivateKeySecret:
-#            name: ${kubernetes_secret.repo_ssh_key.metadata[0].name}
-#            key: sshPrivateKey
-#       EOT 
-#   }
-#   set {
-#     name  = "securityPolicy"
-#     value = google_compute_security_policy.policy.name
-#   }
+resource "helm_release" "argo_cd" {
+  name      = "argo-cd"
+  chart     = "./helm/argo-cd"
+  namespace = kubernetes_namespace.argo.id
+  values = [
+    file("helm/argo-cd/values.yaml")
+  ]
+  set {
+    name  = "argocdLocal.ingressIstio.annotations.kubernetes\\.io/ingress\\.global-static-ip-name"
+    value = google_compute_global_address.global_address[3].name
+  }
+  set {
+    name  = "argocdLocal.ingressIstio.hosts"
+    value = "{${join(",", ["argo-cd.${var.base_domain}"])}}"
+  }
+  set {
+    name  = "argocdLocal.rootApplication.repoUrl"
+    value = var.env_repo_ssh_url
+  }
+  set {
+    name  = "argo-cd.server.config.dex\\.config"
+    value = <<EOT
+       connectors:
+       - config:
+           issuer: https://accounts.google.com
+           clientID: ${var.argocd_oauth_client_id}
+           clientSecret: ${var.argocd_oauth_client_secret}
+         type: oidc
+         id: google
+         name: Google
+      EOT 
+  }
+  set {
+    name  = "argo-cd.server.config.repositories"
+    value = <<EOT
+       - url: ${var.env_repo_ssh_url}
+         sshPrivateKeySecret:
+           name: ${kubernetes_secret.repo_ssh_key.metadata[0].name}
+           key: sshPrivateKey
+      EOT 
+  }
 
-#   provisioner "local-exec" {
-#     command = "curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl"
-#   }
 
-#   provisioner "local-exec" {
-#     command = <<EOH
-#        ./kubectl patch svc \
-#         --server="https://${module.gke.endpoint}" \
-#         --token="${data.google_client_config.default.access_token}" \
-#         --certificate_authority="${path.module}/ca.crt" \
-#         argo-cd-argocd-dex-server -n argo \
-#         -p '{"spec": { "ports": [ {  "port": 5556, "name": "tcp" } ] } }'
-#     EOH
-#   }
-# }
+  provisioner "local-exec" {
+    command = "curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl"
+  }
+
+  provisioner "local-exec" {
+    command = <<EOH
+       ./kubectl patch svc \
+        --server="https://${module.gke.endpoint}" \
+        --token="${data.google_client_config.default.access_token}" \
+        --certificate_authority="${path.module}/ca.crt" \
+        argo-cd-argocd-dex-server -n argo \
+        -p '{"spec": { "ports": [ {  "port": 5556, "name": "tcp" } ] } }'
+    EOH
+  }
+}
 
 # resource "kubernetes_network_policy" "restricted_egress" {
 #   metadata {

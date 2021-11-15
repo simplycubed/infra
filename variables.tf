@@ -59,3 +59,19 @@ variable "grafana_oauth_client_id"{
 variable "grafana_oauth_client_secret"{
   description = "Oauth client secret for grafana SSO"
 }
+
+variable "env_repo_ssh_key"{
+  description = "Environment repo ssh key"
+}
+
+variable "env_repo_ssh_url"{
+  description = "SSH repo url of environment repo"
+}
+
+variable "argocd_oauth_client_secret"{
+   description = "Oauth client secret for argocd sso"
+}
+
+variable "argocd_oauth_client_id"{
+   description = "Oauth client secret for argocd sso"
+}
