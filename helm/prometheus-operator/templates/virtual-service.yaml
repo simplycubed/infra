@@ -1,0 +1,67 @@
+{{- if .Values.alertmanagerLocal.virtualService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: alert-manager
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+  - "{{ index .Values.alertmanagerLocal.ingressIstio.hosts 0 }}"
+  gateways:
+  - {{ .Release.Namespace }}/alert-manager
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        port:
+          number: 9093
+        host: {{ .Release.Name }}-alertmanager
+{{ end }}
+---
+{{- if .Values.prometheusLocal.virtualService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: prometheus
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+  - "{{ index .Values.prometheusLocal.ingressIstio.hosts 0 }}"
+  gateways:
+  - {{ .Release.Namespace }}/prometheus
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        port:
+          number: 9090
+        host: {{ .Release.Name }}-prometheus
+{{ end }}
+---
+{{- if .Values.prometheusLocal.virtualService.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grafana
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+  - "{{ index .Values.grafanaLocal.ingressIstio.hosts 0 }}"
+  gateways:
+  - {{ .Release.Namespace }}/grafana
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        port:
+          number: 80
+        host: {{ .Release.Name }}-grafana
+{{ end }}
+
+

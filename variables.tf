@@ -50,3 +50,12 @@ variable "gke_cluster_name"{
 variable "gke_machine_type"{
   description = "Machine types used in gke cluster"
 }
+
+variable "grafana_oauth_client_id"{
+  description = "Oauth client id for grafana SSO"
+}
+
+
+variable "grafana_oauth_client_secret"{
+  description = "Oauth client secret for grafana SSO"
+}

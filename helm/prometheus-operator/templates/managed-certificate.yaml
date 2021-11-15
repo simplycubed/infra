@@ -1,0 +1,26 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: prometheus
+  namespace: istio-system
+spec:
+  domains:
+   - "{{ index .Values "prometheusLocal" "ingressIstio" "hosts" 0 }}"
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: grafana
+  namespace: istio-system
+spec:
+  domains:
+   - "{{ index .Values "grafanaLocal" "ingressIstio" "hosts" 0 }}"
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: alert-manager
+  namespace: istio-system
+spec:
+  domains:
+   - "{{ index .Values "alertmanagerLocal" "ingressIstio" "hosts" 0 }}"

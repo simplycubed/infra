@@ -1,0 +1,6 @@
+dependencies:
+- name: prometheus-operator
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 9.3.2
+digest: sha256:e0a4bf5a741278c26c1bee95f6e6999f1ecfce18be09372fdab9effae5b72ee9
+generated: "2021-03-23T13:09:12.5266403+05:00"

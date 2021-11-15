@@ -146,10 +146,7 @@ resource "helm_release" "prometheus_operator" {
     name  = "prometheus-operator.grafana.grafana\\.ini.auth\\.google.client_id"
     value = var.grafana_oauth_client_id
   }
-  set {
-    name  = "prometheus-operator.alertmanager.config.receivers[0].pagerduty_configs[0].service_key"
-    value = var.pagerduty_service_key
-  }
+
   set {
     name  = "prometheus-operator.grafana.grafana\\.ini.auth\\.google.client_secret"
     value = var.grafana_oauth_client_secret

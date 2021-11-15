@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: argo-cd
+  namespace: istio-system
+spec:
+  domains:
+   - "{{ index .Values.argocdLocal.ingressIstio.hosts 0 }}"

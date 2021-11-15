@@ -1,0 +1,69 @@
+# Adding ingress in template section as we can not modify namespace name and service name from main chart ingress spec.
+# We need to deploy ingress along with gateway, it has to be in istio-system namespace with service "istio-ingressgateway"
+# istio ingress-gateway will ensure mTls connection while gce ingress will manage IAP and TLS
+
+{{- if .Values.alertmanagerLocal.ingressIstio.enabled }}
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: prometheus-operator-alertmanager
+  namespace: istio-system
+{{- if .Values.alertmanagerLocal.ingressIstio.annotations }}
+  annotations:
+{{ toYaml .Values.alertmanagerLocal.ingressIstio.annotations | indent 4 }}
+{{- end }}
+spec:
+  rules:
+  - host: {{ index .Values.alertmanagerLocal.ingressIstio.hosts 0 }}
+    http: 
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway-iap
+          servicePort: 80
+        path: /*
+        pathType: ImplementationSpecific
+{{ end }}
+---
+{{- if .Values.prometheusLocal.ingressIstio.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus-operator-prometheus
+  namespace: istio-system
+{{- if .Values.prometheusLocal.ingressIstio.annotations }}
+  annotations:
+{{ toYaml .Values.prometheusLocal.ingressIstio.annotations | indent 4 }}
+{{- end }}
+spec:
+  rules:
+  - host: {{ index .Values.prometheusLocal.ingressIstio.hosts 0 }}
+    http: 
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway-iap
+          servicePort: 80
+        path: /*
+        pathType: ImplementationSpecific
+{{ end }}
+---
+{{- if .Values.grafanaLocal.ingressIstio.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus-operator-grafana
+  namespace: istio-system
+{{- if .Values.grafanaLocal.ingressIstio.annotations }}
+  annotations:
+{{ toYaml .Values.grafanaLocal.ingressIstio.annotations | indent 4 }}
+{{- end }}
+spec:
+  rules:
+  - host: {{ index .Values.grafanaLocal.ingressIstio.hosts 0 }}
+    http: 
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway-iap
+          servicePort: 80
+        path: /*
+        pathType: ImplementationSpecific
+{{ end }}
