@@ -45,7 +45,14 @@ module "dns" {
       records = [
         google_compute_global_address.global_address[3].address,
       ]
+    },
+    {
+      name = "www"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "20913630.group30.sites.hubspot.net.",
+      ]
     }
-  
   ]
 }
