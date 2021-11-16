@@ -39,39 +39,39 @@ variable "github_client_secret" {
   sensitive   = true
 }
 
-variable "gke_initial_node_count"{
+variable "gke_initial_node_count" {
   description = "initial count of gke cluster node"
 }
 
-variable "gke_cluster_name"{
-   description = "name of gke cluster"
+variable "gke_cluster_name" {
+  description = "name of gke cluster"
 }
 
-variable "gke_machine_type"{
+variable "gke_machine_type" {
   description = "Machine types used in gke cluster"
 }
 
-variable "grafana_oauth_client_id"{
+variable "grafana_oauth_client_id" {
   description = "Oauth client id for grafana SSO"
 }
 
 
-variable "grafana_oauth_client_secret"{
+variable "grafana_oauth_client_secret" {
   description = "Oauth client secret for grafana SSO"
 }
 
-variable "env_repo_ssh_key"{
+variable "env_repo_ssh_key" {
   description = "Environment repo ssh key"
 }
 
-variable "env_repo_ssh_url"{
+variable "env_repo_ssh_url" {
   description = "SSH repo url of environment repo"
 }
 
-variable "argocd_oauth_client_secret"{
-   description = "Oauth client secret for argocd sso"
+variable "argocd_oauth_client_secret" {
+  description = "Oauth client secret for argocd sso"
 }
 
-variable "argocd_oauth_client_id"{
-   description = "Oauth client secret for argocd sso"
+variable "argocd_oauth_client_id" {
+  description = "Oauth client secret for argocd sso"
 }
