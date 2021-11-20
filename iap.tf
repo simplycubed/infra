@@ -5,8 +5,14 @@ resource "google_iap_web_iam_member" "access_iap_policy" {
   member   = "domain:${var.iap_domain}"
 }
 
+resource "google_iap_brand" "project_brand" {
+  support_email     = "support@simplycubed.com"
+  application_title = "Cloud IAP protected Application"
+  project           = var.project_id
+}
+
 resource "google_iap_client" "iap_client" {
   provider     = google-beta
   display_name = "IAP Auth"
-  brand        = var.iap_brand_name
+  brand        = google_iap_brand.project_brand.name
 }
