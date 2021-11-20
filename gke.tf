@@ -90,16 +90,16 @@ resource "kubernetes_namespace" "argo" {
   }
 }
 
-# resource "kubernetes_secret" "iap_k8s_secret" {
-#   metadata {
-#     name      = "iap-secrets"
-#     namespace = "istio-system"
-#   }
-#   data = {
-#     "client_secret" : google_iap_client.iap_client.secret
-#     "client_id" : google_iap_client.iap_client.client_id
-#   }
-# }
+resource "kubernetes_secret" "iap_k8s_secret" {
+  metadata {
+    name      = "iap-secrets"
+    namespace = "istio-system"
+  }
+  data = {
+    "client_secret" : google_iap_client.iap_client.secret
+    "client_id" : google_iap_client.iap_client.client_id
+  }
+}
 
 resource "kubernetes_secret" "repo_ssh_key" {
   metadata {
