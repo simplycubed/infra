@@ -35,7 +35,6 @@ argo-cd:
        sidecar.istio.io/rewriteAppHTTPProbers: "true"
        sidecar.istio.io/proxyCPU: "50m"  
     config:
-      url: "https://argo-cd.simplycubed.net"
       admin.enabled: "false"
     rbacConfig:
       policy.default: role:admin

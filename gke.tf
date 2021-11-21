@@ -199,6 +199,10 @@ resource "helm_release" "argo_cd" {
            key: sshPrivateKey
       EOT 
   }
+  set {
+      name = "argo-cd.server.config.url"
+      value = "argo-cd.${var.base_domain}"
+  }
 
 
   provisioner "local-exec" {
