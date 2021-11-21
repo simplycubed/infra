@@ -201,7 +201,7 @@ resource "helm_release" "argo_cd" {
   }
   set {
       name = "argo-cd.server.config.url"
-      value = "argo-cd.${var.base_domain}"
+      value = "https://argo-cd.${var.base_domain}"
   }
 
 
