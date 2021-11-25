@@ -79,3 +79,8 @@ variable "argocd_oauth_client_id" {
 variable iap_brand_name {}
 
 variable iap_domain {}
+
+variable db_machine_type {}
+variable db_deletion_protection {
+  default = true
+}
