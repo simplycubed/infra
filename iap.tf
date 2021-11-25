@@ -14,5 +14,5 @@ resource "google_iap_client" "iap_client" {
 resource "google_iap_brand" "project_brand" {
   support_email     = "support@simplycubed.com"
   application_title = "Cloud IAP protected Application"
-  project           = google_project_service.project_service.project
+  project           = var.project_id
 }
