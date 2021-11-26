@@ -200,8 +200,8 @@ resource "helm_release" "argo_cd" {
       EOT 
   }
   set {
-      name = "argo-cd.server.config.url"
-      value = "https://argo-cd.${var.base_domain}"
+    name  = "argo-cd.server.config.url"
+    value = "https://argo-cd.${var.base_domain}"
   }
 
 

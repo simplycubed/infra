@@ -76,11 +76,11 @@ variable "argocd_oauth_client_id" {
   description = "Oauth client secret for argocd sso"
 }
 
-variable iap_brand_name {}
+variable "iap_brand_name" {}
 
-variable iap_domain {}
+variable "iap_domain" {}
 
-variable db_machine_type {}
-variable db_deletion_protection {
+variable "db_machine_type" {}
+variable "db_deletion_protection" {
   default = true
 }
