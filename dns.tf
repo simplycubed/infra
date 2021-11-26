@@ -7,14 +7,6 @@ module "dns" {
   domain     = "${var.base_domain}."
   recordsets = [
     {
-      name = "build"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
       name = "prometheus"
       type = "A"
       ttl  = 60
@@ -44,6 +36,22 @@ module "dns" {
       ttl  = 60
       records = [
         google_compute_global_address.global_address[3].address,
+      ]
+    },
+    {
+      name = "app"
+      type = "A"
+      ttl  = 60
+      records = [
+        google_compute_global_address.global_address[4].address,
+      ]
+    },
+    {
+      name = "api"
+      type = "A"
+      ttl  = 60
+      records = [
+        google_compute_global_address.global_address[5].address,
       ]
     },
     {
