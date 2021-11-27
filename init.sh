@@ -70,14 +70,23 @@ fi
 # Full list of services
 # gcloud services list --available
 echo "=> Enabling required APIs"
+gcloud --project $project_id services enable bigquery.googleapis.com
+gcloud --project $project_id services enable bigquerystorage.googleapis.com
+gcloud --project $project_id services enable cloudbilling.googleapis.com
 gcloud --project $project_id services enable cloudbuild.googleapis.com
+gcloud --project $project_id services enable cloudfunctions.googleapis.com
 gcloud --project $project_id services enable cloudresourcemanager.googleapis.com
 gcloud --project $project_id services enable compute.googleapis.com
+gcloud --project $project_id services enable container.googleapis.com
+gcloud --project $project_id services enable dns.googleapis.com
 gcloud --project $project_id services enable iam.googleapis.com
+gcloud --project $project_id services enable iap.googleapis.com
 gcloud --project $project_id services enable oslogin.googleapis.com
-gcloud --project $project_id services enable run.googleapis.com
+gcloud --project $project_id services enable redis.googleapis.com
 gcloud --project $project_id services enable secretmanager.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
+gcloud --project $project_id services enable sql-component.googleapis.com
+gcloud --project $project_id services enable sqladmin.googleapis.com
 
 gcloud --project $project_id services enable identitytoolkit.googleapis.com
 
@@ -103,28 +112,48 @@ echo "=> Setting Terraform IAM permissions"
 
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/container.admin"
-
-gcloud projects add-iam-policy-binding $project_id \
-  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/editor"
-
-gcloud projects add-iam-policy-binding $project_id \
-  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/iam.roleAdmin"
-
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/iam.securityAdmin"
-
-gcloud projects add-iam-policy-binding $project_id \
-  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/run.admin"
-
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/secretmanager.secretAccessor"
-
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/servicenetworking.networksAdmin"
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/container.admin"
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/iap.settingsAdmin"
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/iam.roleAdmin"
+gcloud projects add-iam-policy-binding $project_id \
+  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
+  --role="roles/cloudfunctions.admin"
+
+if [ "$CREATE_SERVICE_ACCOUNT_KEY" = true ]; then
+  echo "=> Creating key for service account, check key.json file in the root of this project"
+  gcloud iam service-accounts keys create key.json \
+    --iam-account "terraform@${project_id}.iam.gserviceaccount.com"
+fi
+
+# Create OAUTH Brand Application
+IAP_BRAND_NAME=$(gcloud alpha iap oauth-brands list --project $project_id | grep name | cut -f 2 -d ' ' | head -n 1)
+
+oauth_exists=$(gcloud alpha iap oauth-brands list --project $project_id | grep name | cut -f 2 -d ' ')
+if [ "$oauth_exists" = "0" ]; then
+  gcloud alpha iap oauth-brands create --application_title="OAUTH Tooling" --support_email=$SUPPORT_EMAIL --project $project_id
+  IAP_BRAND_NAME=$(gcloud alpha iap oauth-brands list --project $project_id | grep name | cut -f 2 -d ' ' | head -n 1)
+  echo "=> Create OAUTH Brand Application"
+else
+  echo "=> OAUTH Brand Application already exists"
+fi
+
+echo "OUTPUT"
+echo "================================="
+echo "IAP BRAND NAME: $IAP_BRAND_NAME"
+echo "================================="
