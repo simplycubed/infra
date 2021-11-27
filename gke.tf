@@ -174,6 +174,10 @@ resource "helm_release" "argo_cd" {
     value = "{${join(",", ["argo-cd.${var.base_domain}"])}}"
   }
   set {
+    name  = "argocdLocal.rootApplication.repoPath"
+    value = "${var.env}/argocd-applications"
+  }
+  set {
     name  = "argocdLocal.rootApplication.repoUrl"
     value = var.env_repo_ssh_url
   }
