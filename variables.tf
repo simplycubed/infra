@@ -1,22 +1,18 @@
-variable "project_id" {
-  description = "Project for gcloud resources"
+variable "argocd_oauth_client_id" {
+  description = "Oauth client secret for argocd sso"
 }
 
-variable "env" {
-  description = "Env Name"
-}
-
-variable "region" {
-  description = "Region for gcloud resources"
-}
-
-variable "credentials" {
-  description = "Service account to authenticate to gcloud"
-  sensitive   = true
+variable "argocd_oauth_client_secret" {
+  description = "Oauth client secret for argocd sso"
 }
 
 variable "base_domain" {
   description = "Base domain for DNS records"
+}
+
+variable "cloudsql_password" {
+  description = "Password for cloudsql instance"
+  sensitive   = true
 }
 
 variable "cloudsql_username" {
@@ -24,9 +20,26 @@ variable "cloudsql_username" {
   sensitive   = true
 }
 
-variable "cloudsql_password" {
-  description = "Password for cloudsql instance"
+variable "credentials" {
+  description = "Service account to authenticate to gcloud"
   sensitive   = true
+}
+
+variable "db_machine_type" {}
+variable "db_deletion_protection" {
+  default = true
+}
+
+variable "env" {
+  description = "Env Name"
+}
+
+variable "env_repo_ssh_key" {
+  description = "Environment repo ssh key"
+}
+
+variable "env_repo_ssh_url" {
+  description = "SSH repo url of environment repo"
 }
 
 variable "github_client_id" {
@@ -55,32 +68,18 @@ variable "grafana_oauth_client_id" {
   description = "Oauth client id for grafana SSO"
 }
 
-
 variable "grafana_oauth_client_secret" {
   description = "Oauth client secret for grafana SSO"
-}
-
-variable "env_repo_ssh_key" {
-  description = "Environment repo ssh key"
-}
-
-variable "env_repo_ssh_url" {
-  description = "SSH repo url of environment repo"
-}
-
-variable "argocd_oauth_client_secret" {
-  description = "Oauth client secret for argocd sso"
-}
-
-variable "argocd_oauth_client_id" {
-  description = "Oauth client secret for argocd sso"
 }
 
 variable "iap_brand_name" {}
 
 variable "iap_domain" {}
 
-variable "db_machine_type" {}
-variable "db_deletion_protection" {
-  default = true
+variable "project_id" {
+  description = "Project for gcloud resources"
+}
+
+variable "region" {
+  description = "Region for gcloud resources"
 }
