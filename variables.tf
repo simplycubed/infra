@@ -34,6 +34,10 @@ variable "env" {
   description = "Env Name"
 }
 
+variable "env_repo_cloudbuild" {
+  description = "Environment repo cloudbuild key"
+}
+
 variable "env_repo_ssh_key" {
   description = "Environment repo ssh key"
 }
