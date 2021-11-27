@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: argocd-applications
+    path: "{{ index .Values.argocdLocal.rootApplication.repoPath }}"
     repoURL: "{{ index .Values.argocdLocal.rootApplication.repoUrl }}"
     targetRevision: HEAD
   syncPolicy:
