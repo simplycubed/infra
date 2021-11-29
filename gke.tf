@@ -90,6 +90,15 @@ resource "kubernetes_namespace" "argo" {
   }
 }
 
+resource "kubernetes_namespace" "builder" {
+  metadata {
+    name = "builder"
+    labels = {
+      istio-injection = "enabled"
+    }
+  }
+}
+
 resource "kubernetes_secret" "iap_k8s_secret" {
   metadata {
     name      = "iap-secrets"
