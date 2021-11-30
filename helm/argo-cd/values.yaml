@@ -44,6 +44,7 @@ argo-cd:
     service:
       namedTargetPort: false
       type: NodePort
+      servicePortHttpName: tcp
       # annotations:
       #   beta.cloud.google.com/backend-config: '{"default": "default-config"}'
     ingress:

@@ -216,22 +216,6 @@ resource "helm_release" "argo_cd" {
     name  = "argo-cd.server.config.url"
     value = "https://argo-cd.${var.base_domain}"
   }
-
-
-  provisioner "local-exec" {
-    command = "curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x kubectl"
-  }
-
-  provisioner "local-exec" {
-    command = <<EOH
-       ./kubectl patch svc \
-        --server="https://${module.gke.endpoint}" \
-        --token="${data.google_client_config.default.access_token}" \
-        --certificate_authority="${path.module}/ca.crt" \
-        argo-cd-argocd-dex-server -n argo \
-        -p '{"spec": { "ports": [ {  "port": 5556, "name": "tcp" } ] } }'
-    EOH
-  }
 }
 
 # resource "kubernetes_network_policy" "restricted_egress" {
