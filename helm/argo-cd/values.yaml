@@ -27,6 +27,7 @@ argo-cd:
     podAnnotations:
       sidecar.istio.io/rewriteAppHTTPProbers: "true"
       sidecar.istio.io/proxyCPU: "50m"  
+    servicePortHttpName: tcp
   controller:
     podAnnotations:
       sidecar.istio.io/rewriteAppHTTPProbers: "true"
@@ -44,7 +45,6 @@ argo-cd:
     service:
       namedTargetPort: false
       type: NodePort
-      servicePortHttpName: tcp
       # annotations:
       #   beta.cloud.google.com/backend-config: '{"default": "default-config"}'
     ingress:
