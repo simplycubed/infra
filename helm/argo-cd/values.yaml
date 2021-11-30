@@ -7,6 +7,7 @@ argocdLocal:
     enabled: true
   ingressIstio:
     enabled: true
+    abc: xyz
     paths:
       - /* 
     annotations:
