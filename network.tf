@@ -39,6 +39,8 @@ locals {
     "grafana",
     "alert-manager",
     "argo-cd",
+    "builder-web",
+    "builder-api"
   ]
 }
 

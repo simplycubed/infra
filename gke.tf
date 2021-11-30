@@ -90,6 +90,15 @@ resource "kubernetes_namespace" "argo" {
   }
 }
 
+resource "kubernetes_namespace" "builder" {
+  metadata {
+    name = "builder"
+    labels = {
+      istio-injection = "enabled"
+    }
+  }
+}
+
 resource "kubernetes_secret" "iap_k8s_secret" {
   metadata {
     name      = "iap-secrets"
@@ -174,6 +183,10 @@ resource "helm_release" "argo_cd" {
     value = "{${join(",", ["argo-cd.${var.base_domain}"])}}"
   }
   set {
+    name  = "argocdLocal.rootApplication.repoPath"
+    value = "${var.env}/argocd-applications"
+  }
+  set {
     name  = "argocdLocal.rootApplication.repoUrl"
     value = var.env_repo_ssh_url
   }
@@ -200,8 +213,8 @@ resource "helm_release" "argo_cd" {
       EOT 
   }
   set {
-      name = "argo-cd.server.config.url"
-      value = "https://argo-cd.${var.base_domain}"
+    name  = "argo-cd.server.config.url"
+    value = "https://argo-cd.${var.base_domain}"
   }
 
 

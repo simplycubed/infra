@@ -55,6 +55,24 @@ resource "google_cloudbuild_trigger" "push_nginx_base_image" {
   tags = ["managed by terraform"]
 }
 
+#
+# yq
+#
+resource "google_cloudbuild_trigger" "push_yq_base_image" {
+  name = "push-yq-base-image"
+
+  github {
+    owner = "simplycubed"
+    name  = "yq"
+    push {
+      branch = "^main$"
+    }
+  }
+
+  filename = "cloudbuild.yaml"
+
+  tags = ["managed by terraform"]
+}
 
 #
 # builder-web
