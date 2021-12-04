@@ -40,7 +40,8 @@ locals {
     "alert-manager",
     "argo-cd",
     "builder-web",
-    "builder-api"
+    "builder-api",
+    "source-graph"
   ]
 }
 

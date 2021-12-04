@@ -218,37 +218,6 @@ resource "helm_release" "argo_cd" {
   }
 }
 
-# resource "kubernetes_network_policy" "restricted_egress" {
-#   metadata {
-#     name      = "restricted-egress"
-#     namespace = "default"
-#   }
-#   spec {
-#     pod_selector {
-#       match_labels = {
-#         egress-access = "restricted"
-#       }
-#     }
-#     egress {
-#       # For DNS Resolution   
-#       to {
-#         namespace_selector {}
-#         pod_selector {
-#           match_labels = {
-#             k8s-app = "kube-dns"
-#           }
-#         }
-#       }
-#       # Whitelisting google ip
-#       to {
-#         ip_block {
-#           cidr = "172.217.174.110/32"
-#         }
-#       }
-#     }
-#     policy_types = ["Egress"]
-#   }
-# }
 
 resource "local_file" "ca-cert" {
   content  = base64decode(module.gke.ca_certificate)
