@@ -90,6 +90,12 @@ resource "kubernetes_namespace" "argo" {
   }
 }
 
+resource "kubernetes_namespace" "source_graph" {
+  metadata {
+    name = "source-graph"
+  }
+}
+
 resource "kubernetes_namespace" "builder" {
   metadata {
     name = "builder"
@@ -99,10 +105,21 @@ resource "kubernetes_namespace" "builder" {
   }
 }
 
-resource "kubernetes_secret" "iap_k8s_secret" {
+resource "kubernetes_secret" "iap_k8s_secret_istio_system" {
   metadata {
     name      = "iap-secrets"
     namespace = "istio-system"
+  }
+  data = {
+    "client_secret" : google_iap_client.iap_client.secret
+    "client_id" : google_iap_client.iap_client.client_id
+  }
+}
+
+resource "kubernetes_secret" "iap_k8s_secret_sourcegraph" {
+  metadata {
+    name      = "iap-secrets"
+    namespace = "sourcegraph"
   }
   data = {
     "client_secret" : google_iap_client.iap_client.secret
