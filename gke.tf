@@ -127,6 +127,32 @@ resource "kubernetes_secret" "iap_k8s_secret_sourcegraph" {
   }
 }
 
+resource "kubernetes_secret" "iap_k8s_secret_sourcegraph" {
+  metadata {
+    name      = "iap-secrets"
+    namespace = "sourcegraph"
+  }
+  data = {
+    "site-config.json" : <<EOF
+    {
+      "externalURL": "https://source-graph.${var.base_domain}"
+     	"auth.providers": [
+         {
+           "type": "openidconnect",
+           "issuer": "https://accounts.google.com",
+           "clientID": "${var.source_graph_client_id}",
+           "clientSecret": "${var.source_graph_client_secret}",
+           "requireEmailDomain": "simplycubed.com"
+         }
+     	],
+     
+     	"search.index.enabled": true
+     }
+  
+  EOF
+  }
+}
+
 resource "kubernetes_secret" "repo_ssh_key" {
   metadata {
     name      = "repo-ssh-key"
