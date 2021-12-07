@@ -127,7 +127,7 @@ resource "kubernetes_secret" "iap_k8s_secret_sourcegraph" {
   }
 }
 
-resource "kubernetes_secret" "iap_k8s_secret_sourcegraph" {
+resource "kubernetes_secret" "site_config_sourcegraph_secret" {
   metadata {
     name      = "iap-secrets"
     namespace = "sourcegraph"
