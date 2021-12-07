@@ -87,11 +87,11 @@ variable "project_id" {
 variable "region" {
   description = "Region for gcloud resources"
 }
-variable "source_graph_client_id"{
+variable "source_graph_client_id" {
   description = "source graph client id"
 }
 
-variable "source_graph_client_secret"{
+variable "source_graph_client_secret" {
   description = "source graph client id"
 }
 
