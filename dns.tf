@@ -54,7 +54,7 @@ module "dns" {
         google_compute_global_address.global_address[5].address,
       ]
     },
-        {
+    {
       name = "source-graph"
       type = "A"
       ttl  = 60
