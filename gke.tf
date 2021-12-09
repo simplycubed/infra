@@ -135,7 +135,7 @@ resource "kubernetes_secret" "site_config_sourcegraph_secret" {
   data = {
     "site-config.json" : <<EOF
     {
-      "externalURL": "https://source-graph.${var.base_domain}"
+      "externalURL": "https://source-graph.${var.base_domain}",
      	"auth.providers": [
          {
            "type": "openidconnect",
