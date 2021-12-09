@@ -261,9 +261,3 @@ resource "helm_release" "argo_cd" {
   }
 }
 
-
-resource "local_file" "ca-cert" {
-  content  = base64decode(module.gke.ca_certificate)
-  filename = "${path.module}/ca.crt"
-}
-
