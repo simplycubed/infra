@@ -41,7 +41,8 @@ locals {
     "argo-cd",
     "builder-web",
     "builder-api",
-    "source-graph"
+    "source-graph",
+    "builder-registry"
   ]
 }
 

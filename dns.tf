@@ -79,5 +79,13 @@ module "dns" {
         "199.60.103.131"
       ]
     },
+    {
+      name = "registry"
+      type = "A"
+      ttl  = 60
+      records = [
+        google_compute_global_address.global_address[7].address,
+      ]
+    },
   ]
 }
