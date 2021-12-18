@@ -114,3 +114,11 @@ variable "firebase_messaging_sender_id" {
 variable "firebase_app_id" {
   description = "Firebase App ID"
 }
+
+variable "prometheus_enabled"{
+  description = "Deploy prometheus in cluster"
+}
+
+variable "istio_enabled"{
+  description = "Deploy prometheus in cluster"
+}
