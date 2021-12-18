@@ -122,3 +122,7 @@ variable "prometheus_enabled"{
 variable "istio_enabled"{
   description = "Deploy prometheus in cluster"
 }
+
+variable "regional_gke_cluster"{
+  description = "regional GKE cluster"
+}

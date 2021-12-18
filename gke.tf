@@ -14,6 +14,7 @@ module "gke" {
   release_channel            = "STABLE"
   http_load_balancing        = true
   horizontal_pod_autoscaling = false
+  regional                   = var.regional_gke_cluster
   network_policy             = true
   enable_private_nodes       = true
   grant_registry_access      = true
