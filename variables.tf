@@ -128,5 +128,5 @@ variable "regional_gke_cluster"{
 }
 variable "zones"{
   description = "Zone of GKE cluster (if zonal)"
-  default = list(string)
+  type  = list(string)
 }
