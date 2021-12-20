@@ -20,7 +20,7 @@ module "gke" {
   grant_registry_access      = true
   zones                       = var.zones
   istio                      = var.istio_enabled
-  # istio_auth                 = "AUTH_MUTUAL_TLS"
+  istio_auth                 = ""
   remove_default_node_pool   = true
   node_pools = [
     {
