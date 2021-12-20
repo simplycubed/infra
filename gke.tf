@@ -75,14 +75,14 @@ module "workload_identity" {
   use_existing_k8s_sa = false
 }
 
-# resource "kubernetes_namespace" "monitoring" {
-#   metadata {
-#     name = "prometheus-operator"
-#     labels = {
-#       istio-injection = "enabled"
-#     }
-#   }
-# }
+resource "kubernetes_namespace" "monitoring" {
+  metadata {
+    name = "prometheus-operator"
+    labels = {
+      istio-injection = "enabled"
+    }
+  }
+}
 
 resource "kubernetes_namespace" "argo" {
   metadata {
