@@ -18,7 +18,7 @@ module "gke" {
   network_policy             = true
   enable_private_nodes       = true
   grant_registry_access      = true
-  zones                       = var.zone
+  zones                       = var.zones
   istio                      = var.istio_enabled
   istio_auth                 = "AUTH_MUTUAL_TLS"
   remove_default_node_pool   = true

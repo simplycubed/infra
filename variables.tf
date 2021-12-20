@@ -126,7 +126,7 @@ variable "istio_enabled"{
 variable "regional_gke_cluster"{
   description = "regional GKE cluster"
 }
-variable "zone"{
+variable "zones"{
   description = "Zone of GKE cluster (if zonal)"
-  default = ""
+  default = list(string)
 }
