@@ -20,7 +20,7 @@ module "gke" {
   grant_registry_access      = true
   zones                       = var.zones
   istio                      = var.istio_enabled
-  istio_auth                 = "AUTH_MUTUAL_TLS"
+  # istio_auth                 = "AUTH_MUTUAL_TLS"
   remove_default_node_pool   = true
   node_pools = [
     {
@@ -86,9 +86,9 @@ resource "kubernetes_namespace" "monitoring" {
 resource "kubernetes_namespace" "argo" {
   metadata {
     name = "argo"
-    labels = {
-      istio-injection = "enabled"
-    }
+    # labels = {
+    #   istio-injection = "enabled"
+    # }
   }
 }
 
@@ -101,9 +101,9 @@ resource "kubernetes_namespace" "source_graph" {
 resource "kubernetes_namespace" "builder" {
   metadata {
     name = "builder"
-    labels = {
-      istio-injection = "enabled"
-    }
+    # labels = {
+    #   istio-injection = "enabled"
+    # }
   }
 }
 
