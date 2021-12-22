@@ -36,7 +36,7 @@ module "gke" {
       auto_upgrade    = true
       preemptible     = false
       node_count      = var.gke_initial_node_count
-      node_locations  = "${var.region}-a,${var.region}-b"
+      node_locations  = var.zones
     },
   ]
   node_pools_oauth_scopes = {
