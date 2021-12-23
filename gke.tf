@@ -18,11 +18,11 @@ module "gke" {
   network_policy             = true
   enable_private_nodes       = true
   grant_registry_access      = true
-  zones                       = var.zones
+  zones                      = var.zones
   istio                      = var.istio_enabled
   istio_auth                 = "AUTH_NONE"
   # istio_auth                 = "AUTH_MUTUAL_TLS"
-  remove_default_node_pool   = true
+  remove_default_node_pool = true
   node_pools = [
     {
       name            = "default-node-pool"
@@ -148,10 +148,10 @@ resource "kubernetes_secret" "iap_k8s_secret_istio_system" {
 #            "requireEmailDomain": "simplycubed.com"
 #          }
 #      	],
-     
+
 #      	"search.index.enabled": true
 #      }
-  
+
 #   EOF
 #   }
 # }
@@ -167,7 +167,7 @@ resource "kubernetes_secret" "repo_ssh_key" {
 }
 
 resource "helm_release" "prometheus_operator" {
-  count     = var.prometheus_enabled?1:0
+  count     = var.prometheus_enabled ? 1 : 0
   name      = "prometheus-operator"
   chart     = "helm/prometheus-operator"
   namespace = kubernetes_namespace.monitoring.id

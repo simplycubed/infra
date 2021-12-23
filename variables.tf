@@ -115,18 +115,18 @@ variable "firebase_app_id" {
   description = "Firebase App ID"
 }
 
-variable "prometheus_enabled"{
+variable "prometheus_enabled" {
   description = "Deploy prometheus in cluster"
 }
 
-variable "istio_enabled"{
+variable "istio_enabled" {
   description = "Deploy prometheus in cluster"
 }
 
-variable "regional_gke_cluster"{
+variable "regional_gke_cluster" {
   description = "regional GKE cluster"
 }
-variable "zones"{
+variable "zones" {
   description = "Zone of GKE cluster (if zonal)"
-  type  = list(string)
+  type        = list(string)
 }
