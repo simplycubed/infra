@@ -42,7 +42,7 @@ locals {
     "builder-web",
     "builder-api",
     "source-graph",
-    "builder-registry"
+    "registry-etl"
   ]
 }
 

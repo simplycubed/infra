@@ -178,14 +178,14 @@ resource "google_cloudbuild_trigger" "build_builder_api" {
 }
 
 #
-# builder-registry
+# registry-etl
 #
 resource "google_cloudbuild_trigger" "deploy_builder_registry" {
-  name = "deploy-builder-registry"
+  name = "deploy-registry-etl"
 
   github {
     owner = "simplycubed"
-    name  = "builder-registry"
+    name  = "registry-etl"
     push {
       tag    = var.env == "prod" ? "^production-v\\d+\\.\\d+\\.\\d+$" : null
       branch = var.env == "dev" ? "^main$" : null
@@ -204,11 +204,11 @@ resource "google_cloudbuild_trigger" "deploy_builder_registry" {
 resource "google_cloudbuild_trigger" "build_builder_registry" {
   count = var.env == "prod" ? 0 : 1
 
-  name = "build-builder-registry"
+  name = "build-registry-etl"
 
   github {
     owner = "simplycubed"
-    name  = "builder-registry"
+    name  = "registry-etl"
     pull_request {
       branch = ".*"
     }
