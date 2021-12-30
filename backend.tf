@@ -1,7 +1,7 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "SimplyCubed"
+    organization = "simplycubed"
 
     workspaces {
       prefix = "builder-infra-"
