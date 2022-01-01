@@ -180,7 +180,7 @@ resource "google_cloudbuild_trigger" "build_builder_api" {
 #
 # registry-api
 #
-resource "google_cloudbuild_trigger" "deploy_builder_registry" {
+resource "google_cloudbuild_trigger" "deploy_registry_api" {
   name = "deploy-registry-api"
 
   github {
@@ -201,7 +201,7 @@ resource "google_cloudbuild_trigger" "deploy_builder_registry" {
   tags = ["managed by terraform"]
 }
 
-resource "google_cloudbuild_trigger" "build_builder_registry" {
+resource "google_cloudbuild_trigger" "build_registry_api" {
   count = var.env == "prod" ? 0 : 1
 
   name = "build-registry-api"
@@ -222,7 +222,7 @@ resource "google_cloudbuild_trigger" "build_builder_registry" {
 #
 # registry-etl
 #
-resource "google_cloudbuild_trigger" "deploy_builder_registry" {
+resource "google_cloudbuild_trigger" "deploy_registry_etl" {
   name = "deploy-registry-etl"
 
   github {
@@ -243,7 +243,7 @@ resource "google_cloudbuild_trigger" "deploy_builder_registry" {
   tags = ["managed by terraform"]
 }
 
-resource "google_cloudbuild_trigger" "build_builder_registry" {
+resource "google_cloudbuild_trigger" "build_registry_etl" {
   count = var.env == "prod" ? 0 : 1
 
   name = "build-registry-etl"
