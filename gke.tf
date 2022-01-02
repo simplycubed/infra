@@ -28,7 +28,8 @@ module "gke" {
       name            = "default-node-pool"
       machine_type    = var.gke_machine_type
       local_ssd_count = 0
-      disk_size_gb    = 100
+      disk_size_gb    = 50
+      # disk_size_gb    = 100
       autoscaling     = false
       disk_type       = "pd-standard"
       image_type      = "COS"
