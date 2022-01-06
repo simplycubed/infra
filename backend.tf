@@ -1,10 +1,10 @@
 terraform {
-  backend "remote" {
-    hostname     = "app.terraform.io"
+  cloud {
     organization = "simplycubed"
+    hostname     = "app.terraform.io"
 
     workspaces {
-      prefix = "builder-infra-"
+      tags = ["builder", "dev"]
     }
   }
 }
