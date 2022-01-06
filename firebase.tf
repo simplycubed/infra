@@ -1,11 +1,11 @@
-data "google_firebase_project" "default" {
+resource "google_firebase_project" "default" {
   provider = google-beta
   project  = data.google_project.project.project_id
 }
 
 resource "google_firebase_project_location" "default" {
   provider = google-beta
-  project  = data.google_firebase_project.default.project
+  project  = google_firebase_project.default.project
 
   location_id = "us-central"
 }
@@ -23,7 +23,7 @@ resource "google_firebase_web_app" "default" {
   project      = data.google_project.project.project_id
   display_name = local.web[count.index]
 
-  depends_on = [data.google_firebase_project.default]
+  depends_on = [google_firebase_project.default]
 }
 
 data "google_firebase_web_app_config" "default" {
