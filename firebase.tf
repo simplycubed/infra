@@ -10,37 +10,48 @@ resource "google_firebase_project_location" "default" {
   location_id = "us-central"
 }
 
-resource "google_firebase_web_app" "builder" {
+locals {
+  web = [
+    "builder",
+    "registry",
+  ]
+}
+
+resource "google_firebase_web_app" "default" {
+  count        = length(local.web)
   provider     = google-beta
   project      = data.google_project.project.project_id
-  display_name = "builder"
+  display_name = local.web[count.index]
 
   depends_on = [google_firebase_project.default]
 }
 
-data "google_firebase_web_app_config" "builder" {
+data "google_firebase_web_app_config" "default" {
+  count      = length(local.web)
   provider   = google-beta
-  web_app_id = google_firebase_web_app.builder.app_id
+  web_app_id = google_firebase_web_app.default[count.index].app_id
 }
 
-resource "google_storage_bucket" "builder" {
+resource "google_storage_bucket" "default" {
+  count    = length(local.web)
   provider = google-beta
-  name     = "simplycubed-builder-${var.env}"
+  name     = "simplycubed-builder-${var.env}-${local.web[count.index]}"
   location = "US"
 }
 
-resource "google_storage_bucket_object" "builder" {
+resource "google_storage_bucket_object" "default" {
+  count    = length(local.web)
   provider = google-beta
-  bucket   = google_storage_bucket.builder.name
+  bucket   = google_storage_bucket.default[count.index].name
   name     = "firebase-config.json"
 
   content = jsonencode({
-    appId             = google_firebase_web_app.builder.app_id
-    apiKey            = data.google_firebase_web_app_config.builder.api_key
-    authDomain        = data.google_firebase_web_app_config.builder.auth_domain
-    databaseURL       = lookup(data.google_firebase_web_app_config.builder, "database_url", "")
-    storageBucket     = lookup(data.google_firebase_web_app_config.builder, "storage_bucket", "")
-    messagingSenderId = lookup(data.google_firebase_web_app_config.builder, "messaging_sender_id", "")
-    measurementId     = lookup(data.google_firebase_web_app_config.builder, "measurement_id", "")
+    appId             = google_firebase_web_app.default[count.index].app_id
+    apiKey            = data.google_firebase_web_app_config.default[count.index].api_key
+    authDomain        = data.google_firebase_web_app_config.default[count.index].auth_domain
+    databaseURL       = lookup(data.google_firebase_web_app_config.default[count.index], "database_url", "")
+    storageBucket     = lookup(data.google_firebase_web_app_config.default[count.index], "storage_bucket", "")
+    messagingSenderId = lookup(data.google_firebase_web_app_config.default[count.index], "messaging_sender_id", "")
+    measurementId     = lookup(data.google_firebase_web_app_config.default[count.index], "measurement_id", "")
   })
 }
