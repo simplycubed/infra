@@ -39,7 +39,7 @@ module "dns" {
       ]
     },
     {
-      name = "api"
+      name = "app"
       type = "A"
       ttl  = 60
       records = [
@@ -47,11 +47,19 @@ module "dns" {
       ]
     },
     {
-      name = "source-graph"
+      name = "api"
       type = "A"
       ttl  = 60
       records = [
         google_compute_global_address.global_address[5].address,
+      ]
+    },
+    {
+      name = "source-graph"
+      type = "A"
+      ttl  = 60
+      records = [
+        google_compute_global_address.global_address[6].address,
       ]
     },
     {
@@ -76,7 +84,7 @@ module "dns" {
       type = "A"
       ttl  = 60
       records = [
-        google_compute_global_address.global_address[6].address,
+        google_compute_global_address.global_address[7].address,
       ]
     },
   ]
