@@ -18,14 +18,14 @@ resource "google_firebase_web_app" "builder" {
   depends_on = [google_firebase_project.default]
 }
 
-resource "google_firebase_web_app_config" "builder" {
+data "google_firebase_web_app_config" "builder" {
   provider   = google-beta
   web_app_id = google_firebase_web_app.builder.app_id
 }
 
 resource "google_storage_bucket" "builder" {
   provider = google-beta
-  name     = "simplycubed-builder-dev-"
+  name     = "simplycubed-builder-${var.env}"
   location = "US"
 }
 
