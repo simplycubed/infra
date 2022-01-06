@@ -30,14 +30,14 @@ module "gke" {
       local_ssd_count = 0
       disk_size_gb    = 50
       # disk_size_gb    = 100
-      autoscaling     = false
-      disk_type       = "pd-standard"
-      image_type      = "COS"
-      auto_repair     = true
-      auto_upgrade    = true
-      preemptible     = false
-      node_count      = var.gke_initial_node_count
-      node_locations  = var.zones[0]
+      autoscaling    = false
+      disk_type      = "pd-standard"
+      image_type     = "COS"
+      auto_repair    = true
+      auto_upgrade   = true
+      preemptible    = false
+      node_count     = var.gke_initial_node_count
+      node_locations = var.zones[0]
     },
   ]
   node_pools_oauth_scopes = {
