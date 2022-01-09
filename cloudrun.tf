@@ -9,12 +9,7 @@ module "api" {
     { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
     { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" },
-    { key = "PORT", value = "8080" },
-    { key = "BUILDER_SQL_HOST", value = "${google_sql_database_instance.instance.ip_address.0.ip_address}" },
-    { key = "BUILDER_SQL_PORT", value = "5432" },
-    { key = "BUILDER_SQL_NAME", value = "${google_sql_database.builder.name}" },
-    { key = "BUILDER_SQL_USER", value = "${google_secret_manager_secret_version.cloud_sql_user_builder_name_version.secret_data}" },
-    { key = "BUILDER_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_builder_password_version.secret_data}" }
+    { key = "PORT", value = "8080" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" },
@@ -23,6 +18,12 @@ module "api" {
     { path = "/etc/certs/cloudsql/server-ca.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-server-ca-pem" }
   ]
 }
+
+    # { key = "BUILDER_SQL_HOST", value = "${google_sql_database_instance.instance.ip_address.0.ip_address}" },
+    # { key = "BUILDER_SQL_PORT", value = "5432" },
+    # { key = "BUILDER_SQL_NAME", value = "${google_sql_database.builder.name}" },
+    # { key = "BUILDER_SQL_USER", value = "${google_secret_manager_secret_version.cloud_sql_user_builder_name_version.secret_data}" },
+    # { key = "BUILDER_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_builder_password_version.secret_data}" }
 
 resource "google_cloud_run_domain_mapping" "api" {
   location = var.region
@@ -46,12 +47,7 @@ module "registry" {
     { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
     { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" },
-    { key = "PORT", value = "8080" },
-    { key = "REGISTRY_SQL_HOST", value = "${google_sql_database_instance.instance.ip_address.0.ip_address}" },
-    { key = "REGISTRY_SQL_PORT", value = "5432" },
-    { key = "REGISTRY_SQL_NAME", value = "${google_sql_database.registry.name}" },
-    { key = "REGISTRY_SQL_USER", value = "${google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data}" },
-    { key = "REGISTRY_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data}" }
+    { key = "PORT", value = "8080" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" },
@@ -60,6 +56,12 @@ module "registry" {
     { path = "/etc/certs/cloudsql/server-ca.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-server-ca-pem" }
   ]
 }
+
+    # { key = "REGISTRY_SQL_HOST", value = "${google_sql_database_instance.instance.ip_address.0.ip_address}" },
+    # { key = "REGISTRY_SQL_PORT", value = "5432" },
+    # { key = "REGISTRY_SQL_NAME", value = "${google_sql_database.registry.name}" },
+    # { key = "REGISTRY_SQL_USER", value = "${google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data}" },
+    # { key = "REGISTRY_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data}" }
 
 resource "google_cloud_run_domain_mapping" "registry" {
   location = var.region
