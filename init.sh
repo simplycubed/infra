@@ -80,6 +80,7 @@ gcloud --project $project_id services enable bigquerystorage.googleapis.com
 gcloud --project $project_id services enable cloudbilling.googleapis.com
 gcloud --project $project_id services enable cloudbuild.googleapis.com
 gcloud --project $project_id services enable cloudfunctions.googleapis.com
+gcloud --project $project_id services enable cloudkms.googleapis.com
 gcloud --project $project_id services enable cloudresourcemanager.googleapis.com
 gcloud --project $project_id services enable compute.googleapis.com
 gcloud --project $project_id services enable container.googleapis.com

@@ -10,6 +10,10 @@ variable "base_domain" {
   description = "Base domain for DNS records"
 }
 
+variable "builder_api_image" {
+  description = "builder-api image"
+}
+
 variable "cloudsql_password" {
   description = "Password for cloudsql instance"
   sensitive   = true
@@ -126,6 +130,11 @@ variable "istio_enabled" {
 variable "regional_gke_cluster" {
   description = "regional GKE cluster"
 }
+
+variable "registry_api_image" {
+  description = "builder-api image"
+}
+
 variable "zones" {
   description = "Zone of GKE cluster (if zonal)"
   type        = list(string)
