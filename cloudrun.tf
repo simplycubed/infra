@@ -10,11 +10,11 @@ module "api" {
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
     { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" },
     { key = "PORT", value = "8080" },
-    { key = "BUILDER_SQL_HOST", value = google_sql_database_instance.instance.ip_address.0.ip_address },
+    { key = "BUILDER_SQL_HOST", value = "${google_sql_database_instance.instance.ip_address.0.ip_address}" },
     { key = "BUILDER_SQL_PORT", value = "5432" },
-    { key = "BUILDER_SQL_NAME", value = google_sql_database.builder.name },
-    { key = "BUILDER_SQL_USER", value = google_secret_manager_secret_version.cloud_sql_user_builder_name_version.secret_data },
-    { key = "BUILDER_SQL_PASS", value = google_secret_manager_secret_version.cloud_sql_user_builder_password_version.secret_data }
+    { key = "BUILDER_SQL_NAME", value = "${google_sql_database.builder.name}" },
+    { key = "BUILDER_SQL_USER", value = "${google_secret_manager_secret_version.cloud_sql_user_builder_name_version.secret_data}" },
+    { key = "BUILDER_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_builder_password_version.secret_data}" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "firebase-service-account", filenames = { "latest" = "latest" } },
@@ -47,11 +47,11 @@ module "registry" {
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
     { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" },
     { key = "PORT", value = "8080" },
-    { key = "REGISTRY_SQL_HOST", value = google_sql_database_instance.instance.ip_address.0.ip_address },
+    { key = "REGISTRY_SQL_HOST", value = "${google_sql_database_instance.instance.ip_address.0.ip_address}" },
     { key = "REGISTRY_SQL_PORT", value = "5432" },
-    { key = "REGISTRY_SQL_NAME", value = google_sql_database.registry.name },
-    { key = "REGISTRY_SQL_USER", value = google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data },
-    { key = "REGISTRY_SQL_PASS", value = google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data }
+    { key = "REGISTRY_SQL_NAME", value = "${google_sql_database.registry.name}" },
+    { key = "REGISTRY_SQL_USER", value = "${google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data}" },
+    { key = "REGISTRY_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data}" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "firebase-service-account", filenames = { "latest" = "latest" } },
