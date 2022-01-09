@@ -17,10 +17,10 @@ module "api" {
     { key = "BUILDER_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_builder_password_version.secret_data}" }
   ]
   volumes = [
-    { path = "/etc/secrets/firebase.json", secret = "firebase-service-account", filenames = { "latest" = "latest" } },
-    { path = "/etc/certs/cloudsql/client-cert.pem", secret = "cloud-sql-client-key-pem", filenames = { "latest" = "latest" } },
-    { path = "/etc/certs/cloudsql/client-key.pem", secret = "cloud-sql-client-cert-pem", filenames = { "latest" = "latest" } },
-    { path = "/etc/certs/cloudsql/server-ca.pem", secret = "cloud-sql-server-ca-pem", filenames = { "latest" = "latest" } }
+    { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" },
+    { path = "/etc/certs/cloudsql/client-cert.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-key-pem" },
+    { path = "/etc/certs/cloudsql/client-key.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-cert-pem" },
+    { path = "/etc/certs/cloudsql/server-ca.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-server-ca-pem" }
   ]
 }
 
@@ -54,10 +54,10 @@ module "registry" {
     { key = "REGISTRY_SQL_PASS", value = "${google_secret_manager_secret_version.cloud_sql_user_registry_name_version.secret_data}" }
   ]
   volumes = [
-    { path = "/etc/secrets/firebase.json", secret = "firebase-service-account", filenames = { "latest" = "latest" } },
-    { path = "/etc/certs/cloudsql/client-cert.pem", secret = "cloud-sql-client-key-pem", filenames = { "latest" = "latest" } },
-    { path = "/etc/certs/cloudsql/client-key.pem", secret = "cloud-sql-client-cert-pem", filenames = { "latest" = "latest" } },
-    { path = "/etc/certs/cloudsql/server-ca.pem", secret = "cloud-sql-server-ca-pem", filenames = { "latest" = "latest" } }
+    { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" },
+    { path = "/etc/certs/cloudsql/client-cert.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-key-pem" },
+    { path = "/etc/certs/cloudsql/client-key.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-cert-pem" },
+    { path = "/etc/certs/cloudsql/server-ca.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-server-ca-pem" }
   ]
 }
 
