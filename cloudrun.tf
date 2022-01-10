@@ -23,7 +23,7 @@ module "registry" {
   image               = "gcr.io/${var.project_id}/${var.registry_api_image}"
   location            = var.region
   allow_public_access = true
-  map_domains         = "registry-run.${var.base_domain}"
+  map_domains         = ["registry-run.${var.base_domain}"]
   env = [
     { key = "ENV", value = "dev" },
     { key = "ALLOWED_ORIGIN", value = "*" },
