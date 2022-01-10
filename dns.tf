@@ -87,5 +87,17 @@ module "dns" {
         google_compute_global_address.global_address[7].address,
       ]
     },
+    {
+      name    = module.api.dns.name
+      type    = module.api.dns.type
+      ttl     = 60
+      records = module.api.dns.rrdatas
+    },
+    {
+      name    = module.registry.dns.name
+      type    = module.registry.dns.type
+      ttl     = 60
+      records = module.registry.dns.rrdatas
+    },
   ]
 }
