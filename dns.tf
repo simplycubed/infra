@@ -88,16 +88,16 @@ module "dns" {
       ]
     },
     {
-      name    = module.api.dns.status[0].resource_records[0].name
-      type    = module.api.dns.status[0].resource_records[0].type
+      name    = module.api.dns["api-run"].name
+      type    = module.api.dns["api-run"].type
       ttl     = 60
-      records = module.api.dns.status[0].resource_records[0].rrdatas[0]
+      records = module.api.dns["api-run"].rrdatas[0]
     },
     {
-      name    = module.registry.dns.status[0].resource_records[0].name
-      type    = module.registry.status[0].resource_records[0].type
+      name    = module.registry["registry-run"].name
+      type    = module.registry["registry-run"].type
       ttl     = 60
-      records = module.registry.dns.status[0].resource_records[0].rrdatas[0]
+      records = module.registry["registry-run"].rrdatas[0]
     },
   ]
 }
