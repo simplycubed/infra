@@ -10,8 +10,7 @@ module "api" {
     { key = "ALLOWED_ORIGIN", value = "*" },
     { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" },
-    { key = "PORT", value = "8080" }
+    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
@@ -41,8 +40,7 @@ module "registry" {
     { key = "ALLOWED_ORIGIN", value = "*" },
     { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" },
-    { key = "PORT", value = "8080" }
+    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
