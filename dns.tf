@@ -88,16 +88,16 @@ module "dns" {
       ]
     },
     {
-      name    = module.api.dns.name
-      type    = module.api.dns.type
+      name    = module.api.dns[0].name
+      type    = module.api.dns[0].type
       ttl     = 60
-      records = module.api.dns.rrdatas
+      records = module.api.dns[0].rrdatas[0]
     },
     {
-      name    = module.registry.dns.name
-      type    = module.registry.dns.type
+      name    = module.registry.dns[0].name
+      type    = module.registry.dns[0].type
       ttl     = 60
-      records = module.registry.dns.rrdatas
+      records = module.registry.dns[0].rrdatas[0]
     },
   ]
 }
