@@ -260,3 +260,45 @@ resource "google_cloudbuild_trigger" "build_registry_etl" {
 
   tags = ["managed by terraform"]
 }
+
+#
+# sample-service
+#
+resource "google_cloudbuild_trigger" "deploy_sample_service" {
+  name = "deploy-sample-service"
+
+  github {
+    owner = "simplycubed"
+    name  = "sample-service"
+    push {
+      tag    = var.env == "prod" ? "^production-v\\d+\\.\\d+\\.\\d+$" : null
+      branch = var.env == "dev" ? "^main$" : null
+    }
+  }
+
+  substitutions = {
+    _ENV = var.env
+  }
+
+  filename = "cloudbuild.main.yaml"
+
+  tags = ["managed by terraform"]
+}
+
+resource "google_cloudbuild_trigger" "build_sample_service" {
+  count = var.env == "prod" ? 0 : 1
+
+  name = "build-sample-service"
+
+  github {
+    owner = "simplycubed"
+    name  = "sample-service"
+    pull_request {
+      branch = ".*"
+    }
+  }
+
+  filename = "cloudbuild.pr.yaml"
+
+  tags = ["managed by terraform"]
+}

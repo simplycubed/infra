@@ -1,5 +1,3 @@
-# KEEP - will implement after DB is converted from Cloud SQL to Firestore
-# 
 # module "api" {
 #   source   = "garbetjie/cloud-run/google"
 #   name     = "api"
@@ -14,18 +12,9 @@
 #     { key = "PORT", value = "8080" }
 #   ]
 #   volumes = [
-#     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" },
-#     { path = "/etc/certs/cloudsql/client-cert.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-key-pem" },
-#     { path = "/etc/certs/cloudsql/client-key.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-cert-pem" },
-#     { path = "/etc/certs/cloudsql/server-ca.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-server-ca-pem" }
+#     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
 #   ]
 # }
-
-# # { key = "BUILDER_SQL_HOST", value = google_sql_database_instance.instance.ip_address.0.ip_address },
-# # { key = "BUILDER_SQL_PORT", value = "5432" },
-# # { key = "BUILDER_SQL_NAME", value = google_sql_database.builder.name },
-# # { key = "BUILDER_SQL_PASS", value = google_sql_user.builder.password },
-# # { key = "BUILDER_SQL_USER", value = google_sql_user.builder.name }
 
 # resource "google_cloud_run_domain_mapping" "api" {
 #   location = var.region
@@ -52,18 +41,9 @@
 #     { key = "PORT", value = "8080" }
 #   ]
 #   volumes = [
-#     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" },
-#     { path = "/etc/certs/cloudsql/client-cert.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-key-pem" },
-#     { path = "/etc/certs/cloudsql/client-key.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-client-cert-pem" },
-#     { path = "/etc/certs/cloudsql/server-ca.pem", secret = "projects/${var.project_id}/secrets/cloud-sql-server-ca-pem" }
+#     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
 #   ]
 # }
-
-# # { key = "REGISTRY_SQL_HOST", value = google_sql_database_instance.instance.ip_address.0.ip_address },
-# # { key = "REGISTRY_SQL_PORT", value = "5432" },
-# # { key = "REGISTRY_SQL_NAME", value = google_sql_database.registry.name },
-# # { key = "REGISTRY_SQL_PASS", value = google_sql_user.registry.password },
-# # { key = "REGISTRY_SQL_USER", value = google_sql_user.registry.name }
 
 # resource "google_cloud_run_domain_mapping" "registry" {
 #   location = var.region
