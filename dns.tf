@@ -88,16 +88,16 @@ module "dns" {
       ]
     },
     {
-      name    = module.api.dns["api-run"].name
-      type    = module.api.dns["api-run"].type
+      name    = module.api.dns["api-run.simplycubed.dev"].name
+      type    = module.api.dns["api-run.simplycubed.dev"].type
       ttl     = 60
-      records = module.api.dns["api-run"].rrdatas[0]
+      records = module.api.dns["api-run.simplycubed.dev"].rrdatas[0]
     },
     {
-      name    = module.registry["registry-run"].name
-      type    = module.registry["registry-run"].type
+      name    = module.registry["registry-run.simplycubed.dev"].name
+      type    = module.registry["registry-run.simplycubed.dev"].type
       ttl     = 60
-      records = module.registry["registry-run"].rrdatas[0]
-    },
+      records = module.registry["registry-run.simplycubed.dev"].rrdatas[0]
+    }
   ]
 }
