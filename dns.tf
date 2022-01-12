@@ -88,16 +88,20 @@ module "dns" {
       ]
     },
     {
-      name    = module.api.dns["api-run.simplycubed.dev"].name
-      type    = module.api.dns["api-run.simplycubed.dev"].type
-      ttl     = 60
-      records = module.api.dns["api-run.simplycubed.dev"].rrdatas[0]
+      name = "api-run"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
     },
     {
-      name    = module.registry.dns["registry-run.simplycubed.dev"].name
-      type    = module.registry.dns["registry-run.simplycubed.dev"].type
-      ttl     = 60
-      records = module.registry.dns["registry-run.simplycubed.dev"].rrdatas[0]
-    }
+      name = "registry-run"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
   ]
 }
