@@ -1,6 +1,6 @@
 module "builder_api" {
   source              = "garbetjie/cloud-run/google"
-  name                = "builder_api"
+  name                = "builder-api"
   image               = "gcr.io/${var.project_id}/${var.builder_api_image}"
   location            = var.region
   map_domains         = ["builder-api.${var.base_domain}"]
@@ -19,7 +19,7 @@ module "builder_api" {
 
 module "builder_github" {
   source              = "garbetjie/cloud-run/google"
-  name                = "builder_github"
+  name                = "builder-github"
   image               = "gcr.io/${var.project_id}/${var.builder_github_image}"
   location            = var.region
   map_domains         = ["builder-github.${var.base_domain}"]
@@ -38,7 +38,7 @@ module "builder_github" {
 
 module "registry_api" {
   source              = "garbetjie/cloud-run/google"
-  name                = "registry_api"
+  name                = "registry-api"
   image               = "gcr.io/${var.project_id}/${var.registry_api_image}"
   location            = var.region
   allow_public_access = true
@@ -57,7 +57,7 @@ module "registry_api" {
 
 module "registry_etl" {
   source              = "garbetjie/cloud-run/google"
-  name                = "registry_etl"
+  name                = "registry-etl"
   image               = "gcr.io/${var.project_id}/${var.registry_etl_image}"
   location            = var.region
   allow_public_access = false
