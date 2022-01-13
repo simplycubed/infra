@@ -86,30 +86,32 @@ module "dns" {
       records = [
         google_compute_global_address.global_address[7].address,
       ]
-    },
-    {
-      name = "api-run"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "github"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "registry-run"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
     }
   ]
 }
+
+
+    # {
+    #   name = "api-run"
+    #   type = "CNAME"
+    #   ttl  = 60
+    #   records = [
+    #     "ghs.googlehosted.com.",
+    #   ]
+    # },
+    # {
+    #   name = "github"
+    #   type = "CNAME"
+    #   ttl  = 60
+    #   records = [
+    #     "ghs.googlehosted.com.",
+    #   ]
+    # },
+    # {
+    #   name = "registry-run"
+    #   type = "CNAME"
+    #   ttl  = 60
+    #   records = [
+    #     "ghs.googlehosted.com.",
+    #   ]
+    # }
