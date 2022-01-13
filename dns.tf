@@ -96,12 +96,20 @@ module "dns" {
       ]
     },
     {
-      name = "registry-run"
+      name = "github"
       type = "CNAME"
       ttl  = 60
       records = [
         "ghs.googlehosted.com.",
       ]
     },
+    {
+      name = "registry-run"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    }
   ]
 }

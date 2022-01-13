@@ -14,6 +14,10 @@ variable "builder_api_image" {
   description = "builder-api image"
 }
 
+variable "builder_github_image" {
+  description = "builder-github image"
+}
+
 variable "cloudsql_password" {
   description = "Password for cloudsql instance"
   sensitive   = true
@@ -48,6 +52,10 @@ variable "env_repo_ssh_key" {
 
 variable "env_repo_ssh_url" {
   description = "SSH repo url of environment repo"
+}
+
+variable "registry_etl_image" {
+  description = "Registry ETL Image"
 }
 
 variable "github_client_id" {
