@@ -1,4 +1,6 @@
-data "google_project" "project" {}
+data "google_project" "project" {
+  provider = google-beta
+}
 
 resource "google_project_iam_member" "project" {
   project = var.project_id
