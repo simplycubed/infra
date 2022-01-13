@@ -3,6 +3,11 @@ resource "google_firebase_project" "default" {
   project  = data.google_project.project.project_id
 }
 
+data "google_storage_bucket" "default" {
+  provider = google-beta
+  name     = "simplycubed-builder-${var.env}.appspot.com"
+}
+
 data "google_firebase_web_app" "builder" {
   provider = google-beta
   app_id   = "simplycubed-builder-${var.env}"
@@ -15,15 +20,10 @@ data "google_firebase_web_app_config" "builder" {
   web_app_id = data.google_firebase_web_app.builder.app_id
 }
 
-data "google_storage_bucket" "builder" {
-  provider = google-beta
-  name     = "simplycubed-builder-${var.env}"
-}
-
 resource "google_storage_bucket_object" "builder" {
   provider = google-beta
-  bucket   = data.google_storage_bucket.builder.name
-  name     = "firebase-config.json"
+  bucket   = data.google_storage_bucket.default.name
+  name     = "builder-firebase-config.json"
 
   content = jsonencode({
     appId             = data.google_firebase_web_app.builder.app_id
@@ -33,5 +33,36 @@ resource "google_storage_bucket_object" "builder" {
     storageBucket     = lookup(data.google_firebase_web_app_config.builder, "storage_bucket", "")
     messagingSenderId = lookup(data.google_firebase_web_app_config.builder, "messaging_sender_id", "")
     measurementId     = lookup(data.google_firebase_web_app_config.builder, "measurement_id", "")
+  })
+}
+
+# ----
+
+
+data "google_firebase_web_app" "registry" {
+  provider = google-beta
+  app_id   = "simplycubed-registry-${var.env}"
+
+  depends_on = [google_firebase_project.default]
+}
+
+data "google_firebase_web_app_config" "registry" {
+  provider   = google-beta
+  web_app_id = data.google_firebase_web_app.registry.app_id
+}
+
+resource "google_storage_bucket_object" "registry" {
+  provider = google-beta
+  bucket   = data.google_storage_bucket.default.name
+  name     = "registry-firebase-config.json"
+
+  content = jsonencode({
+    appId             = data.google_firebase_web_app.registry.app_id
+    apiKey            = data.google_firebase_web_app_config.registry.api_key
+    authDomain        = data.google_firebase_web_app_config.registry.auth_domain
+    databaseURL       = lookup(data.google_firebase_web_app_config.registry, "database_url", "")
+    storageBucket     = lookup(data.google_firebase_web_app_config.registry, "storage_bucket", "")
+    messagingSenderId = lookup(data.google_firebase_web_app_config.registry, "messaging_sender_id", "")
+    measurementId     = lookup(data.google_firebase_web_app_config.registry, "measurement_id", "")
   })
 }
