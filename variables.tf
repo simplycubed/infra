@@ -24,7 +24,7 @@ variable "iap_brand_name" {
 }
 
 variable "iap_domain" {
-description = "IAP Domain"
+  description = "IAP Domain"
 }
 
 variable "project_id" {
