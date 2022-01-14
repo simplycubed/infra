@@ -21,8 +21,9 @@ resource "google_service_account" "firebase" {
 }
 
 resource "google_project_iam_member" "firebase" {
-  role   = "roles/firebase.viewer"
-  member = "serviceAccount:${google_service_account.firebase.email}"
+  project = var.project_id
+  role    = "roles/firebase.viewer"
+  member  = "serviceAccount:${google_service_account.firebase.email}"
 }
 
 resource "google_service_account_key" "firebase" {
