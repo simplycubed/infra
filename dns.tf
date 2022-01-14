@@ -25,10 +25,10 @@ module "dns" {
     },
     {
       name = "app"
-      type = "CNAME"
+      type = "A"
       ttl  = 60
       records = [
-        "ghs.googlehosted.com.",
+        "199.36.158.100",
       ]
     },
     {
@@ -49,10 +49,10 @@ module "dns" {
     },
     {
       name = "registry"
-      type = "CNAME"
+      type = "A"
       ttl  = 60
       records = [
-        "ghs.googlehosted.com.",
+        "199.36.158.100",
       ]
     },
     {
