@@ -1,8 +1,0 @@
-name: infra-argo-cd
-apiVersion: v2
-description: A Helm chart for Kubernetes
-dependencies:
-- name: argo-cd
-  version: "*"
-  repository: "https://argoproj.github.io/argo-helm"
-version: 0.1.5

@@ -1,11 +1,3 @@
-variable "argocd_oauth_client_id" {
-  description = "Oauth client secret for argocd sso"
-}
-
-variable "argocd_oauth_client_secret" {
-  description = "Oauth client secret for argocd sso"
-}
-
 variable "base_domain" {
   description = "Base domain for DNS records"
 }
@@ -18,79 +10,22 @@ variable "builder_github_image" {
   description = "builder-github image"
 }
 
-variable "cloudsql_password" {
-  description = "Password for cloudsql instance"
-  sensitive   = true
-}
-
-variable "cloudsql_username" {
-  description = "username for cloudsql instance"
-  sensitive   = true
-}
-
 variable "credentials" {
   description = "Service account to authenticate to gcloud"
   sensitive   = true
-}
-
-variable "db_machine_type" {}
-variable "db_deletion_protection" {
-  default = true
 }
 
 variable "env" {
   description = "Env Name"
 }
 
-variable "env_repo_cloudbuild" {
-  description = "Environment repo cloudbuild key"
+variable "iap_brand_name" {
+  description = "IAP Brand Name"
 }
 
-variable "env_repo_ssh_key" {
-  description = "Environment repo ssh key"
+variable "iap_domain" {
+description = "IAP Domain"
 }
-
-variable "env_repo_ssh_url" {
-  description = "SSH repo url of environment repo"
-}
-
-variable "registry_etl_image" {
-  description = "Registry ETL Image"
-}
-
-variable "github_client_id" {
-  description = "GitHub Client ID"
-  sensitive   = true
-}
-
-variable "github_client_secret" {
-  description = "GitHub Client Secret"
-  sensitive   = true
-}
-
-variable "gke_initial_node_count" {
-  description = "initial count of gke cluster node"
-}
-
-variable "gke_cluster_name" {
-  description = "name of gke cluster"
-}
-
-variable "gke_machine_type" {
-  description = "Machine types used in gke cluster"
-}
-
-variable "grafana_oauth_client_id" {
-  description = "Oauth client id for grafana SSO"
-}
-
-variable "grafana_oauth_client_secret" {
-  description = "Oauth client secret for grafana SSO"
-}
-
-variable "iap_brand_name" {}
-
-variable "iap_domain" {}
 
 variable "project_id" {
   description = "Project for gcloud resources"
@@ -99,12 +34,13 @@ variable "project_id" {
 variable "region" {
   description = "Region for gcloud resources"
 }
-variable "source_graph_client_id" {
-  description = "source graph client id"
+
+variable "registry_etl_image" {
+  description = "Registry ETL Image"
 }
 
-variable "source_graph_client_secret" {
-  description = "source graph client id"
+variable "registry_api_image" {
+  description = "builder-api image"
 }
 
 variable "firebase_api_key" {
@@ -125,25 +61,4 @@ variable "firebase_messaging_sender_id" {
 
 variable "firebase_app_id" {
   description = "Firebase App ID"
-}
-
-variable "prometheus_enabled" {
-  description = "Deploy prometheus in cluster"
-}
-
-variable "istio_enabled" {
-  description = "Deploy prometheus in cluster"
-}
-
-variable "regional_gke_cluster" {
-  description = "regional GKE cluster"
-}
-
-variable "registry_api_image" {
-  description = "builder-api image"
-}
-
-variable "zones" {
-  description = "Zone of GKE cluster (if zonal)"
-  type        = list(string)
 }

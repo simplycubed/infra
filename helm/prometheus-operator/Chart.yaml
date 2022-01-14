@@ -1,8 +1,0 @@
-name: infra-monitoring
-apiVersion: v2
-description: A Helm chart for Kubernetes
-dependencies:
-- name: prometheus-operator
-  version: "*"
-  repository: "https://prometheus-community.github.io/helm-charts"
-version: 0.1.3

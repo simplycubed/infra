@@ -7,62 +7,6 @@ module "dns" {
   domain     = "${var.base_domain}."
   recordsets = [
     {
-      name = "prometheus"
-      type = "A"
-      ttl  = 60
-      records = [
-        google_compute_global_address.global_address[0].address,
-      ]
-    },
-    {
-      name = "grafana"
-      type = "A"
-      ttl  = 60
-      records = [
-        google_compute_global_address.global_address[1].address,
-      ]
-    },
-    {
-      name = "alert-manager"
-      type = "A"
-      ttl  = 60
-      records = [
-        google_compute_global_address.global_address[2].address,
-      ]
-    },
-    {
-      name = "argo-cd"
-      type = "A"
-      ttl  = 60
-      records = [
-        google_compute_global_address.global_address[3].address,
-      ]
-    },
-    {
-      name = "app"
-      type = "A"
-      ttl  = 60
-      records = [
-        google_compute_global_address.global_address[4].address,
-      ]
-    },
-    {
-      name = "api"
-      type = "A"
-      ttl  = 60
-      records = [
-        google_compute_global_address.global_address[5].address,
-      ]
-    },
-    {
-      name = "source-graph"
-      type = "A"
-      ttl  = 60
-      records = [
-        google_compute_global_address.global_address[6].address,
-      ]
-    },
-    {
       name = "www"
       type = "CNAME"
       ttl  = 60
@@ -80,15 +24,15 @@ module "dns" {
       ]
     },
     {
-      name = "registry"
-      type = "A"
+      name = "app"
+      type = "CNAME"
       ttl  = 60
       records = [
-        google_compute_global_address.global_address[7].address,
+        "ghs.googlehosted.com.",
       ]
     },
     {
-      name = "builder-api"
+      name = "api"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -97,6 +41,14 @@ module "dns" {
     },
     {
       name = "builder-github"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
+    {
+      name = "registry"
       type = "CNAME"
       ttl  = 60
       records = [
