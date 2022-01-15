@@ -1,6 +1,6 @@
 module "builder_api" {
   source              = "simplycubed/cloud-run/google"
-  version             = "2.2.2"
+  version             = "2.2.3"
   name                = "builder-api"
   image               = "gcr.io/${var.project_id}/${var.builder_api_image}"
   location            = var.region
@@ -20,7 +20,7 @@ module "builder_api" {
 
 module "builder_github" {
   source              = "simplycubed/cloud-run/google"
-  version             = "2.2.2"
+  version             = "2.2.3"
   name                = "builder-github"
   image               = "gcr.io/${var.project_id}/${var.builder_github_image}"
   location            = var.region
@@ -40,7 +40,7 @@ module "builder_github" {
 
 module "registry_api" {
   source              = "simplycubed/cloud-run/google"
-  version             = "2.2.2"
+  version             = "2.2.3"
   name                = "registry-api"
   image               = "gcr.io/${var.project_id}/${var.registry_api_image}"
   location            = var.region
@@ -60,7 +60,7 @@ module "registry_api" {
 
 module "registry_etl" {
   source              = "simplycubed/cloud-run/google"
-  version             = "2.2.2"
+  version             = "2.2.3"
   name                = "registry-etl"
   image               = "gcr.io/${var.project_id}/${var.registry_etl_image}"
   location            = var.region
