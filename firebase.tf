@@ -4,7 +4,7 @@ resource "google_firebase_project" "default" {
   project  = data.google_project.project.project_id
 }
 
-data "google_storage_bucket" "default" {
+resource "google_storage_bucket" "default" {
   provider = google-beta
   name     = "simplycubed-builder-${var.env}.appspot.com"
 }
@@ -25,11 +25,11 @@ data "google_firebase_web_app_config" "builder" {
 
 resource "google_storage_bucket_object" "builder" {
   provider = google-beta
-  bucket   = data.google_storage_bucket.default.name
+  bucket   = google_storage_bucket.default.name
   name     = "builder-firebase-config.json"
 
   content = jsonencode({
-    appId             = data.google_firebase_web_app.builder.app_id
+    appId             = google_firebase_web_app.builder.app_id
     apiKey            = data.google_firebase_web_app_config.builder.api_key
     authDomain        = data.google_firebase_web_app_config.builder.auth_domain
     databaseURL       = lookup(data.google_firebase_web_app_config.builder, "database_url", "")
@@ -55,11 +55,11 @@ data "google_firebase_web_app_config" "registry" {
 
 resource "google_storage_bucket_object" "registry" {
   provider = google-beta
-  bucket   = data.google_storage_bucket.default.name
+  bucket   = google_storage_bucket.default.name
   name     = "registry-firebase-config.json"
 
   content = jsonencode({
-    appId             = data.google_firebase_web_app.registry.app_id
+    appId             = google_firebase_web_app.registry.app_id
     apiKey            = data.google_firebase_web_app_config.registry.api_key
     authDomain        = data.google_firebase_web_app_config.registry.auth_domain
     databaseURL       = lookup(data.google_firebase_web_app_config.registry, "database_url", "")
