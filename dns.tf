@@ -1,3 +1,6 @@
+locals {
+  google_site_verification = var.env == "prod" ? "QPCQaZxlV-D1dlQZNwa8-g5wk0p0s0Pb2VoZS9iqiX0" : "E-DNc34OmbkUPcUw9FrzN9RN9WdGW6dk7FuD3NLYoic"
+}
 
 module "dns" {
   source     = "terraform-google-modules/cloud-dns/google"
@@ -96,8 +99,7 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "google-site-verification=E-DNc34OmbkUPcUw9FrzN9RN9WdGW6dk7FuD3NLYoic",
-        "google-site-verification=QPCQaZxlV-D1dlQZNwa8-g5wk0p0s0Pb2VoZS9iqiX0",
+        "google-site-verification=${local.google_site_verification}",
         "firebase=simplycubed-builder-${var.env}",
         "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com ~all\""
       ]
