@@ -99,16 +99,9 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
+        "google-site-verification=${local.google_site_verification}",
         "firebase=simplycubed-builder-${var.env}",
         "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com ~all\""
-      ]
-    },
-    {
-      name = "api"
-      type = "TXT"
-      ttl  = 300
-      records = [
-        "google-site-verification=${local.google_site_verification}",
       ]
     },
     {
