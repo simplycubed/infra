@@ -20,7 +20,7 @@ resource "google_firebase_web_app" "builder" {
 
 data "google_firebase_web_app_config" "builder" {
   provider   = google-beta
-  web_app_id = data.google_firebase_web_app.builder.id
+  web_app_id = google_firebase_web_app.builder.id
 }
 
 resource "google_storage_bucket_object" "builder" {
@@ -50,7 +50,7 @@ resource "google_firebase_web_app" "registry" {
 
 data "google_firebase_web_app_config" "registry" {
   provider   = google-beta
-  web_app_id = data.google_firebase_web_app.registry.id
+  web_app_id = google_firebase_web_app.registry.id
 }
 
 resource "google_storage_bucket_object" "registry" {
