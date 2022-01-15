@@ -97,6 +97,7 @@ module "dns" {
       ttl  = 300
       records = [
         "google-site-verification=E-DNc34OmbkUPcUw9FrzN9RN9WdGW6dk7FuD3NLYoic",
+        "google-site-verification=QPCQaZxlV-D1dlQZNwa8-g5wk0p0s0Pb2VoZS9iqiX0",
         "firebase=simplycubed-builder-${var.env}",
         "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com ~all\""
       ]
