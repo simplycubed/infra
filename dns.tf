@@ -1,5 +1,5 @@
 locals {
-  google_site_verification = var.env == "prod" ? "QPCQaZxlV-D1dlQZNwa8-g5wk0p0s0Pb2VoZS9iqiX0" : "E-DNc34OmbkUPcUw9FrzN9RN9WdGW6dk7FuD3NLYoic"
+  google_site_verification = var.env == "prod" ? "E-DNc34OmbkUPcUw9FrzN9RN9WdGW6dk7FuD3NLYoic" : "QPCQaZxlV-D1dlQZNwa8-g5wk0p0s0Pb2VoZS9iqiX0"
 }
 
 module "dns" {
