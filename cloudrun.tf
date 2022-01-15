@@ -22,7 +22,7 @@ module "builder_github" {
   name                = "builder-github"
   image               = "gcr.io/${var.project_id}/${var.builder_github_image}"
   location            = var.region
-  map_domains         = ["github.${var.base_domain}"]
+  map_domains         = ["builder-github.${var.base_domain}"]
   allow_public_access = false
   env = [
     { key = "ENV", value = "${var.env}" },
