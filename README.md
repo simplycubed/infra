@@ -30,6 +30,10 @@ This project contains the Terraform configuration for GCP including an init scri
 - Add terraform service account email as an owner of support email user group in Google Workspace.
 - Queue Plan in Terraform Cloud to confirm the project is configured correctly.
 
+## DNS
+
+- Cloud Run Domain Mapping requires adding the Terraform user to Google Domains to verify the domain and generate TLs certificates.
+
 ## OAuth Concent Screen
 
 - App name: `OAUTH Tooling`
@@ -81,10 +85,20 @@ ns-cloud-*.googledomains.com.
 | project_id | simplycubed-builder-dev |
 | region | us-central1 |
 | credentials | SENSITIVE |
-| base_domain | simplycubed.dev |
-| builder_domain | devopsui.dev |
-| registry_domain | devopsregistry.dev |
+| base_domain | simplycubed.dev or simplycubed.com |
 | iap_brand_name | projects/${project_number}/brands/${brand_number} |
+
+## Test Private Cloud Run instances
+
+Curl private Cloud Run services
+
+```bash
+
+alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-identity-token)"'
+
+gcurl https://private.somedomain.com
+
+```
 
 ## Resources
 

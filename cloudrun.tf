@@ -1,5 +1,5 @@
 module "builder_api" {
-  source              = "garbetjie/cloud-run/google"
+  source              = "simplycubed/cloud-run/google"
   name                = "builder-api"
   image               = "gcr.io/${var.project_id}/${var.builder_api_image}"
   location            = var.region
@@ -18,7 +18,7 @@ module "builder_api" {
 }
 
 module "builder_github" {
-  source              = "garbetjie/cloud-run/google"
+  source              = "simplycubed/cloud-run/google"
   name                = "builder-github"
   image               = "gcr.io/${var.project_id}/${var.builder_github_image}"
   location            = var.region
@@ -37,7 +37,7 @@ module "builder_github" {
 }
 
 module "registry_api" {
-  source              = "garbetjie/cloud-run/google"
+  source              = "simplycubed/cloud-run/google"
   name                = "registry-api"
   image               = "gcr.io/${var.project_id}/${var.registry_api_image}"
   location            = var.region
@@ -56,7 +56,7 @@ module "registry_api" {
 }
 
 module "registry_etl" {
-  source              = "garbetjie/cloud-run/google"
+  source              = "simplycubed/cloud-run/google"
   name                = "registry-etl"
   image               = "gcr.io/${var.project_id}/${var.registry_etl_image}"
   location            = var.region
