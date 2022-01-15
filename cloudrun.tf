@@ -6,11 +6,11 @@ module "builder_api" {
   map_domains         = ["api.${var.base_domain}"]
   allow_public_access = true
   env = [
-    { key = "ENV", value = "dev" },
+    { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
+    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" }
+    { key = "FRONTEND_URL", value = "https://app.${var.base_domain}" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
@@ -25,11 +25,11 @@ module "builder_github" {
   map_domains         = ["github.${var.base_domain}"]
   allow_public_access = false
   env = [
-    { key = "ENV", value = "dev" },
+    { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
+    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" }
+    { key = "FRONTEND_URL", value = "https://app.simplycubed.${var.base_domain}" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
@@ -44,11 +44,11 @@ module "registry_api" {
   allow_public_access = true
   map_domains         = ["registry-api.${var.base_domain}"]
   env = [
-    { key = "ENV", value = "dev" },
+    { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
+    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" }
+    { key = "FRONTEND_URL", value = "https://app.simplycubed.${var.base_domain}" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
@@ -63,11 +63,11 @@ module "registry_etl" {
   allow_public_access = false
   map_domains         = ["registry-etl.${var.base_domain}"]
   env = [
-    { key = "ENV", value = "dev" },
+    { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-dev.firebaseapp.com" },
+    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.dev" }
+    { key = "FRONTEND_URL", value = "https://app.simplycubed.${var.base_domain}" }
   ]
   volumes = [
     { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
