@@ -58,8 +58,9 @@ Terraform manages DNS using Google Cloud DNS. After applying the Terraform Plan 
 ## Set Nameservers
 
 Update the nameservers in Gandi.net with the nameservers in Cloud DNS.
- - Nameserver updates can take up to 24 hours.
- - [DNS Checker](https://dnschecker.org/ns-lookup.php)
+
+- Nameserver updates can take up to 24 hours.
+- [DNS Checker](https://dnschecker.org/ns-lookup.php)
 
 ```text
 # replace * with custom value
@@ -78,7 +79,7 @@ ns-cloud-*.googledomains.com.
 | Key  | Value |
 |---|---|
 | project_id | simplycubed-builder-dev |
-| region | asia-northeast1 |
+| region | us-central1 |
 | credentials | SENSITIVE |
 | base_domain | simplycubed.dev |
 | builder_domain | devopsui.dev |
