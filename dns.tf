@@ -150,7 +150,7 @@ module "dns" {
       ]
     },
     {
-      name = "firebase1._domainkey.simplycubed.com"
+      name = "firebase1._domainkey"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -158,7 +158,7 @@ module "dns" {
       ]
     },
     {
-      name = "firebase2._domainkey.simplycubed.com"
+      name = "firebase2._domainkey"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -166,7 +166,7 @@ module "dns" {
       ]
     },
     {
-      name = "23352241.simplycubed.com"
+      name = "23352241"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -174,7 +174,7 @@ module "dns" {
       ]
     },
     {
-      name = "em7387.simplycubed.com"
+      name = "em7387"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -182,7 +182,7 @@ module "dns" {
       ]
     },
     {
-      name = "s1._domainkey.simplycubed.com"
+      name = "s1._domainkey"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -190,7 +190,7 @@ module "dns" {
       ]
     },
     {
-      name = "s2._domainkey.simplycubed.com"
+      name = "s2._domainkey"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -198,7 +198,7 @@ module "dns" {
       ]
     },
     {
-      name = "url3202.simplycubed.com"
+      name = "url3202"
       type = "CNAME"
       ttl  = 60
       records = [
