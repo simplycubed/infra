@@ -91,8 +91,8 @@ gcloud --project $project_id services enable oslogin.googleapis.com
 gcloud --project $project_id services enable redis.googleapis.com
 gcloud --project $project_id services enable secretmanager.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
-gcloud --project $project_id services enable sql-component.googleapis.com
-gcloud --project $project_id services enable sqladmin.googleapis.com
+# gcloud --project $project_id services enable sql-component.googleapis.com
+# gcloud --project $project_id services enable sqladmin.googleapis.com
 
 gcloud --project $project_id services enable identitytoolkit.googleapis.com
 

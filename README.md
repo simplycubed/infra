@@ -21,7 +21,7 @@ This project contains the Terraform configuration for GCP including an init scri
 ```bash
 # PROD
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
-./init.sh simplycubed-builder-prod 1013393027722 false true support@simplycubed.com
+./init.sh simplycubed-builder-prod 1013393027722 false false support@simplycubed.com
 ```
 
 - Terraform service account will be generated with access *key.json*.
