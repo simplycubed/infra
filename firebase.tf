@@ -7,6 +7,7 @@ resource "google_firebase_project" "default" {
 resource "google_storage_bucket" "default" {
   provider = google-beta
   name     = "simplycubed-builder-${var.env}.appspot.com"
+	location = "US"
 }
 
 #  Builder
