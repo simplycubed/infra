@@ -4,10 +4,12 @@ resource "google_firebase_project" "default" {
   project  = data.google_project.project.project_id
 }
 
+# simplycubed-builder-${var.env}.appspot.com was automatically created
+# Adding a new bucket due to domain verification error in TF
 resource "google_storage_bucket" "default" {
   provider = google-beta
-  name     = "simplycubed-builder-${var.env}.appspot.com"
-	location = "US"
+  name     = "simplycubed-builder-${var.env}"
+  location = "US"
 }
 
 #  Builder
