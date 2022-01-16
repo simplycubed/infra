@@ -19,6 +19,11 @@ variable "env" {
   description = "Env Name"
 }
 
+variable "firebase_token" {
+  description = "Firebase CI Token"
+  sensitive   = true
+}
+
 variable "iap_brand_name" {
   description = "IAP Brand Name"
 }
