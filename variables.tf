@@ -2,12 +2,8 @@ variable "base_domain" {
   description = "Base domain for DNS records"
 }
 
-variable "builder_api_image" {
-  description = "builder-api image"
-}
-
-variable "builder_github_image" {
-  description = "builder-github image"
+variable "default_image" {
+  description = "Default Cloud Run image used to create instance using Terraform"
 }
 
 variable "credentials" {
@@ -33,14 +29,6 @@ variable "project_id" {
 
 variable "region" {
   description = "Region for gcloud resources"
-}
-
-variable "registry_etl_image" {
-  description = "Registry ETL Image"
-}
-
-variable "registry_api_image" {
-  description = "builder-api image"
 }
 
 variable "firebase_api_key" {

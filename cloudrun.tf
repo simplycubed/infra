@@ -2,7 +2,7 @@ module "builder_api" {
   source              = "simplycubed/cloud-run/google"
   version             = "2.2.3"
   name                = "builder-api"
-  image               = "gcr.io/${var.project_id}/${var.builder_api_image}"
+  image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
   map_domains         = ["api.${var.base_domain}"]
   allow_public_access = true
@@ -22,7 +22,7 @@ module "builder_github" {
   source              = "simplycubed/cloud-run/google"
   version             = "2.2.3"
   name                = "builder-github"
-  image               = "gcr.io/${var.project_id}/${var.builder_github_image}"
+  image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
   map_domains         = ["builder-github.${var.base_domain}"]
   allow_public_access = false
@@ -42,7 +42,7 @@ module "registry_api" {
   source              = "simplycubed/cloud-run/google"
   version             = "2.2.3"
   name                = "registry-api"
-  image               = "gcr.io/${var.project_id}/${var.registry_api_image}"
+  image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
   allow_public_access = true
   map_domains         = ["registry-api.${var.base_domain}"]
@@ -62,7 +62,7 @@ module "registry_etl" {
   source              = "simplycubed/cloud-run/google"
   version             = "2.2.3"
   name                = "registry-etl"
-  image               = "gcr.io/${var.project_id}/${var.registry_etl_image}"
+  image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
   allow_public_access = false
   map_domains         = ["registry-etl.${var.base_domain}"]
