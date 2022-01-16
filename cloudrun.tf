@@ -14,7 +14,7 @@ module "builder_api" {
     { key = "FRONTEND_URL", value = "https://app.${var.base_domain}" }
   ]
   volumes = [
-    { path = "/etc/secrets", secret = "projects/${var.project_id}/secrets/firebase-service-account",filenames = { "latest" = "firebase.json" } }
+    { path = "/etc/secrets", secret = "projects/${var.project_id}/secrets/firebase-service-account",versions = { "firebase.json" = "latest" } }
   ]
 }
 
@@ -34,7 +34,7 @@ module "registry_api" {
     { key = "FRONTEND_URL", value = "https://app.simplycubed.${var.base_domain}" }
   ]
   volumes = [
-    { path = "/etc/secrets", secret = "projects/${var.project_id}/secrets/firebase-service-account",filenames = { "latest" = "firebase.json" } }
+    { path = "/etc/secrets", secret = "projects/${var.project_id}/secrets/firebase-service-account",versions = { "firebase.json" = "latest" } }
   ]
 }
 
