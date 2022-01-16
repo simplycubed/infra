@@ -1,16 +1,3 @@
-# FIREBASE TOKEN
-resource "google_secret_manager_secret" "firebase_token" {
-  secret_id = "firebase-token"
-  replication {
-    automatic = true
-  }
-}
-
-resource "google_secret_manager_secret_version" "firebase_token_version" {
-  secret      = google_secret_manager_secret.firebase_token.id
-  secret_data = var.firebase_token
-}
-
 # FIREBASE SERVICE ACCOUNT
 resource "google_secret_manager_secret" "firebase" {
   secret_id = "firebase-service-account"
