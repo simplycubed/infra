@@ -43,14 +43,6 @@ module "dns" {
       ]
     },
     {
-      name = "builder-github"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
       name = "registry"
       type = "A"
       ttl  = 60

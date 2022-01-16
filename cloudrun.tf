@@ -18,26 +18,6 @@ module "builder_api" {
   ]
 }
 
-module "builder_github" {
-  source              = "simplycubed/cloud-run/google"
-  version             = "2.2.3"
-  name                = "builder-github"
-  image               = "gcr.io/${var.project_id}/${var.default_image}"
-  location            = var.region
-  map_domains         = ["builder-github.${var.base_domain}"]
-  allow_public_access = false
-  env = [
-    { key = "ENV", value = "${var.env}" },
-    { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
-    { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.${var.base_domain}" }
-  ]
-  volumes = [
-    { path = "/etc/secrets/firebase.json", secret = "projects/${var.project_id}/secrets/firebase-service-account" }
-  ]
-}
-
 module "registry_api" {
   source              = "simplycubed/cloud-run/google"
   version             = "2.2.3"
