@@ -1,4 +1,23 @@
 #
+# firebase
+#
+resource "google_cloudbuild_trigger" "push_firebase_base_image" {
+  name = "push-firebase-base-image"
+
+  github {
+    owner = "simplycubed"
+    name  = "firebase"
+    push {
+      branch = "^main$"
+    }
+  }
+
+  filename = "cloudbuild.yaml"
+
+  tags = ["managed by terraform"]
+}
+
+#
 # golang
 #
 resource "google_cloudbuild_trigger" "push_golang_base_image" {
