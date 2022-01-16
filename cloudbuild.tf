@@ -262,6 +262,48 @@ resource "google_cloudbuild_trigger" "build_registry_etl" {
 }
 
 #
+# registry-web
+#
+resource "google_cloudbuild_trigger" "deploy_registry_web" {
+  name = "deploy-registry-web"
+
+  github {
+    owner = "simplycubed"
+    name  = "registry-web"
+    push {
+      tag    = var.env == "prod" ? "^production-v\\d+\\.\\d+\\.\\d+$" : null
+      branch = var.env == "dev" ? "^main$" : null
+    }
+  }
+
+  substitutions = {
+    _ENV = var.env
+  }
+
+  filename = "cloudbuild.main.yaml"
+
+  tags = ["managed by terraform"]
+}
+
+resource "google_cloudbuild_trigger" "build_registry_web" {
+  count = var.env == "prod" ? 0 : 1
+
+  name = "build-registry-web"
+
+  github {
+    owner = "simplycubed"
+    name  = "registry-web"
+    pull_request {
+      branch = ".*"
+    }
+  }
+
+  filename = "cloudbuild.pr.yaml"
+
+  tags = ["managed by terraform"]
+}
+
+#
 # sample-service
 #
 resource "google_cloudbuild_trigger" "deploy_sample_service" {
