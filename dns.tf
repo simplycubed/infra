@@ -1,10 +1,3 @@
-module "base_to_www_site" {
-  source        = "simplycubed/domain-redirect/google"
-  version       = "1.0.0"
-  hostname      = var.base_domain
-  host_redirect = "www.${var.base_domain}"
-}
-
 locals {
   google_site_verification = var.env == "prod" ? "E-DNc34OmbkUPcUw9FrzN9RN9WdGW6dk7FuD3NLYoic" : "TvTmlk3mbvtg38d3xFCZUJHT-vXkbgzV6CXHoiL2v0o"
 }
