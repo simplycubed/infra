@@ -5,7 +5,7 @@ module "builder_api" {
   image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
   map_domains         = ["api.${var.base_domain}"]
-  allow_public_access = true
+  allow_public_access = false
   env = [
     { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
@@ -25,7 +25,7 @@ module "registry_api" {
   name                = "registry-api"
   image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
-  allow_public_access = true
+  allow_public_access = false
   map_domains         = ["registry-api.${var.base_domain}"]
   env = [
     { key = "ENV", value = "${var.env}" },
