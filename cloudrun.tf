@@ -47,6 +47,7 @@ module "registry_etl" {
   image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
   allow_public_access = false
+  ingress             = "internal"
   map_domains         = ["registry-etl.${var.base_domain}"]
   env = [
     { key = "ENV", value = "${var.env}" },
