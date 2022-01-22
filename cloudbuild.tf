@@ -94,6 +94,25 @@ resource "google_cloudbuild_trigger" "push_python_base_image" {
 }
 
 #
+# ruby
+#
+resource "google_cloudbuild_trigger" "push_ruby_base_image" {
+  name = "push-ruby-base-image"
+
+  github {
+    owner = "simplycubed"
+    name  = "ruby"
+    push {
+      branch = "^main$"
+    }
+  }
+
+  filename = "cloudbuild.yaml"
+
+  tags = ["managed by terraform"]
+}
+
+#
 # yq
 #
 resource "google_cloudbuild_trigger" "push_yq_base_image" {

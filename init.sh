@@ -75,6 +75,7 @@ fi
 # Full list of services
 # gcloud services list --available
 echo "=> Enabling required APIs"
+gcloud --project $project_id services enable apigateway.googleapis.com
 gcloud --project $project_id services enable bigquery.googleapis.com
 gcloud --project $project_id services enable bigquerystorage.googleapis.com
 gcloud --project $project_id services enable cloudbilling.googleapis.com
@@ -87,14 +88,14 @@ gcloud --project $project_id services enable container.googleapis.com
 gcloud --project $project_id services enable dns.googleapis.com
 gcloud --project $project_id services enable iam.googleapis.com
 gcloud --project $project_id services enable iap.googleapis.com
+gcloud --project $project_id services enable identitytoolkit.googleapis.com
 gcloud --project $project_id services enable oslogin.googleapis.com
 gcloud --project $project_id services enable redis.googleapis.com
 gcloud --project $project_id services enable secretmanager.googleapis.com
+gcloud --project $project_id services enable servicecontrol.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
 # gcloud --project $project_id services enable sql-component.googleapis.com
 # gcloud --project $project_id services enable sqladmin.googleapis.com
-
-gcloud --project $project_id services enable identitytoolkit.googleapis.com
 
 # TODO: Monitor this new feature request to automate Enabling the Identity Platform
 echo "=> Need to manually 'Enable Identity Platform', this is a known limitation"
