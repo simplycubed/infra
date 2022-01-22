@@ -1,6 +1,6 @@
 module "builder_api" {
-  source              = "simplycubed/cloud-run/google"
-  version             = "2.2.6"
+  source              = "simplycubed/cloud-run-cicd-updates/google"
+  version             = "2.2.2"
   name                = "builder-api"
   image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
@@ -20,8 +20,8 @@ module "builder_api" {
 }
 
 module "registry_api" {
-  source              = "simplycubed/cloud-run/google"
-  version             = "2.2.6"
+  source              = "simplycubed/cloud-run-cicd-updates/google"
+  version             = "2.2.2"
   name                = "registry-api"
   image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
@@ -41,8 +41,8 @@ module "registry_api" {
 }
 
 module "registry_etl" {
-  source              = "simplycubed/cloud-run/google"
-  version             = "2.2.6"
+  source              = "simplycubed/cloud-run-cicd-updates/google"
+  version             = "2.2.2"
   name                = "registry-etl"
   image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
