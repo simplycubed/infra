@@ -50,3 +50,12 @@ variable "firebase_messaging_sender_id" {
 variable "firebase_app_id" {
   description = "Firebase App ID"
 }
+
+variable "github_client_id" {
+  description = "GitHub OAuth Client ID"
+}
+
+variable "github_client_secret" {
+  description = "GitHub OAuth Client Secret"
+  sensitive = true
+}
