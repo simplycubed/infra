@@ -57,5 +57,5 @@ variable "github_client_id" {
 
 variable "github_client_secret" {
   description = "GitHub OAuth Client Secret"
-  sensitive = true
+  sensitive   = true
 }
