@@ -3,7 +3,6 @@
 #
 resource "google_cloudbuild_trigger" "push_firebase_base_image" {
   name = "push-firebase-base-image"
-
   github {
     owner = "simplycubed"
     name  = "firebase"
@@ -11,10 +10,8 @@ resource "google_cloudbuild_trigger" "push_firebase_base_image" {
       branch = "^main$"
     }
   }
-
   filename = "cloudbuild.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -22,7 +19,6 @@ resource "google_cloudbuild_trigger" "push_firebase_base_image" {
 #
 resource "google_cloudbuild_trigger" "push_golang_base_image" {
   name = "push-golang-base-image"
-
   github {
     owner = "simplycubed"
     name  = "golang"
@@ -30,10 +26,8 @@ resource "google_cloudbuild_trigger" "push_golang_base_image" {
       branch = "^main$"
     }
   }
-
   filename = "cloudbuild.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -41,7 +35,6 @@ resource "google_cloudbuild_trigger" "push_golang_base_image" {
 #
 resource "google_cloudbuild_trigger" "push_node_base_image" {
   name = "push-node-base-image"
-
   github {
     owner = "simplycubed"
     name  = "node"
@@ -49,10 +42,8 @@ resource "google_cloudbuild_trigger" "push_node_base_image" {
       branch = "^main$"
     }
   }
-
   filename = "cloudbuild.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -60,7 +51,6 @@ resource "google_cloudbuild_trigger" "push_node_base_image" {
 #
 resource "google_cloudbuild_trigger" "push_nginx_base_image" {
   name = "push-nginx-base-image"
-
   github {
     owner = "simplycubed"
     name  = "nginx"
@@ -68,10 +58,8 @@ resource "google_cloudbuild_trigger" "push_nginx_base_image" {
       branch = "^main$"
     }
   }
-
   filename = "cloudbuild.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -79,7 +67,6 @@ resource "google_cloudbuild_trigger" "push_nginx_base_image" {
 #
 resource "google_cloudbuild_trigger" "push_python_base_image" {
   name = "push-python-base-image"
-
   github {
     owner = "simplycubed"
     name  = "python"
@@ -87,10 +74,8 @@ resource "google_cloudbuild_trigger" "push_python_base_image" {
       branch = "^main$"
     }
   }
-
   filename = "cloudbuild.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -98,7 +83,6 @@ resource "google_cloudbuild_trigger" "push_python_base_image" {
 #
 resource "google_cloudbuild_trigger" "push_ruby_base_image" {
   name = "push-ruby-base-image"
-
   github {
     owner = "simplycubed"
     name  = "ruby"
@@ -106,10 +90,8 @@ resource "google_cloudbuild_trigger" "push_ruby_base_image" {
       branch = "^main$"
     }
   }
-
   filename = "cloudbuild.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -117,7 +99,6 @@ resource "google_cloudbuild_trigger" "push_ruby_base_image" {
 #
 resource "google_cloudbuild_trigger" "push_yq_base_image" {
   name = "push-yq-base-image"
-
   github {
     owner = "simplycubed"
     name  = "yq"
@@ -125,10 +106,8 @@ resource "google_cloudbuild_trigger" "push_yq_base_image" {
       branch = "^main$"
     }
   }
-
   filename = "cloudbuild.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -136,7 +115,6 @@ resource "google_cloudbuild_trigger" "push_yq_base_image" {
 #
 resource "google_cloudbuild_trigger" "deploy_builder_web" {
   name = "deploy-builder-web"
-
   github {
     owner = "simplycubed"
     name  = "builder-web"
@@ -145,23 +123,24 @@ resource "google_cloudbuild_trigger" "deploy_builder_web" {
       branch = var.env == "dev" ? "^main$" : null
     }
   }
-
   substitutions = {
-    _BUILDER_URL = var.builder_api_url
-    _ENV = var.env
-    _REGISTRY_URL = var.registry_api_url
+    _ENV                          = var.env
+    _FIREBASE_API_KEY             = var.firebase_api_key
+    _FIREBASE_APP_ID              = var.firebase_app_id
+    _FIREBASE_AUTH_DOMAIN         = var.firebase_auth_domain
+    _FIREBASE_BUILDER_URL         = var.builder_api_url
+    _FIREBASE_GITHUB_CLIENT_ID    = var.github_client_id
+    _FIREBASE_MESSAGING_SENDER_ID = var.firebase_messaging_sender_id
+    _FIREBASE_REGISTRY_URL        = var.registry_api_url
+    _FIREBASE_STORAGE_BUCKET      = var.firebase_storage_bucket
   }
-
   filename = "cloudbuild.main.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 resource "google_cloudbuild_trigger" "build_builder_web" {
   count = var.env == "prod" ? 0 : 1
-
-  name = "build-builder-web"
-
+  name  = "build-builder-web"
   github {
     owner = "simplycubed"
     name  = "builder-web"
@@ -169,10 +148,8 @@ resource "google_cloudbuild_trigger" "build_builder_web" {
       branch = ".*"
     }
   }
-
   filename = "cloudbuild.pr.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -180,7 +157,6 @@ resource "google_cloudbuild_trigger" "build_builder_web" {
 #
 resource "google_cloudbuild_trigger" "deploy_builder_api" {
   name = "deploy-builder-api"
-
   github {
     owner = "simplycubed"
     name  = "builder-api"
@@ -189,21 +165,16 @@ resource "google_cloudbuild_trigger" "deploy_builder_api" {
       branch = var.env == "dev" ? "^main$" : null
     }
   }
-
   substitutions = {
     _ENV = var.env
   }
-
   filename = "cloudbuild.main.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 resource "google_cloudbuild_trigger" "build_builder_api" {
   count = var.env == "prod" ? 0 : 1
-
-  name = "build-builder-api"
-
+  name  = "build-builder-api"
   github {
     owner = "simplycubed"
     name  = "builder-api"
@@ -211,10 +182,8 @@ resource "google_cloudbuild_trigger" "build_builder_api" {
       branch = ".*"
     }
   }
-
   filename = "cloudbuild.pr.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -222,7 +191,6 @@ resource "google_cloudbuild_trigger" "build_builder_api" {
 #
 resource "google_cloudbuild_trigger" "deploy_registry_api" {
   name = "deploy-registry-api"
-
   github {
     owner = "simplycubed"
     name  = "registry-api"
@@ -231,21 +199,16 @@ resource "google_cloudbuild_trigger" "deploy_registry_api" {
       branch = var.env == "dev" ? "^main$" : null
     }
   }
-
   substitutions = {
     _ENV = var.env
   }
-
   filename = "cloudbuild.main.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 resource "google_cloudbuild_trigger" "build_registry_api" {
   count = var.env == "prod" ? 0 : 1
-
-  name = "build-registry-api"
-
+  name  = "build-registry-api"
   github {
     owner = "simplycubed"
     name  = "registry-api"
@@ -253,10 +216,8 @@ resource "google_cloudbuild_trigger" "build_registry_api" {
       branch = ".*"
     }
   }
-
   filename = "cloudbuild.pr.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 #
@@ -264,7 +225,6 @@ resource "google_cloudbuild_trigger" "build_registry_api" {
 #
 resource "google_cloudbuild_trigger" "deploy_registry_etl" {
   name = "deploy-registry-etl"
-
   github {
     owner = "simplycubed"
     name  = "registry-etl"
@@ -273,21 +233,16 @@ resource "google_cloudbuild_trigger" "deploy_registry_etl" {
       branch = var.env == "dev" ? "^main$" : null
     }
   }
-
   substitutions = {
     _ENV = var.env
   }
-
   filename = "cloudbuild.main.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }
 
 resource "google_cloudbuild_trigger" "build_registry_etl" {
   count = var.env == "prod" ? 0 : 1
-
-  name = "build-registry-etl"
-
+  name  = "build-registry-etl"
   github {
     owner = "simplycubed"
     name  = "registry-etl"
@@ -295,8 +250,6 @@ resource "google_cloudbuild_trigger" "build_registry_etl" {
       branch = ".*"
     }
   }
-
   filename = "cloudbuild.pr.yaml"
-
-  tags = ["managed by terraform"]
+  tags     = ["managed by terraform"]
 }

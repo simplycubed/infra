@@ -35,6 +35,10 @@ variable "region" {
   description = "Region for gcloud resources"
 }
 
+variable "firebase_app_id" {
+  description = "Firebase App ID"
+}
+
 variable "firebase_api_key" {
   description = "Firebase API Key"
 }
@@ -49,10 +53,6 @@ variable "firebase_storage_bucket" {
 
 variable "firebase_messaging_sender_id" {
   description = "Firebase Messaging Sender ID"
-}
-
-variable "firebase_app_id" {
-  description = "Firebase App ID"
 }
 
 variable "github_client_id" {
