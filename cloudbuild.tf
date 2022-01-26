@@ -147,7 +147,9 @@ resource "google_cloudbuild_trigger" "deploy_builder_web" {
   }
 
   substitutions = {
+    _BUILDER_URL = var.builder_api_url
     _ENV = var.env
+    _REGISTRY_URL = var.registry_api_url
   }
 
   filename = "cloudbuild.main.yaml"
