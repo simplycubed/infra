@@ -2,6 +2,10 @@ variable "base_domain" {
   description = "Base domain for DNS records"
 }
 
+variable "builder_api_url" {
+  description = "Builder API URL"
+}
+
 variable "default_image" {
   description = "Default Cloud Run image used to create instance using Terraform"
 }
@@ -58,4 +62,8 @@ variable "github_client_id" {
 variable "github_client_secret" {
   description = "GitHub OAuth Client Secret"
   sensitive   = true
+}
+
+variable "registry_api_url" {
+  description = "Registry API URL"
 }
