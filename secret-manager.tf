@@ -71,3 +71,15 @@ resource "google_secret_manager_secret_version" "vue_app_app_id_version" {
   secret      = google_secret_manager_secret.vue_app_app_id.id
   secret_data = var.firebase_app_id
 }
+
+resource "google_secret_manager_secret" "vue_app_github_client_id" {
+  secret_id = "vue-app-github-client-id"
+  replication {
+    automatic = true
+  }
+}
+
+resource "google_secret_manager_secret_version" "vue_app_github_client_id_version" {
+  secret      = google_secret_manager_secret.vue_app_github_client_id.id
+  secret_data = var.github_client_id
+}
