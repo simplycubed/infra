@@ -1,3 +1,5 @@
+# https://www.youtube.com/watch?v=7FoSrWEDx-g
+# 
 # locals {
 #   api_config_id_prefix     = "api"
 #   api_gateway_container_id = "api-gw"
