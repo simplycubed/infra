@@ -6,7 +6,7 @@ resource "google_api_gateway_api" "api" {
 resource "google_api_gateway_api_config" "api" {
   provider      = google-beta
   api           = google_api_gateway_api.api.api_id
-  api_config_id = "cfg"
+  api_config_id = "api"
   openapi_documents {
     document {
       path     = "spec.yaml"
@@ -16,4 +16,10 @@ resource "google_api_gateway_api_config" "api" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+resource "google_api_gateway_gateway" "api" {
+  provider   = google-beta
+  api_config = google_api_gateway_api_config.api.id
+  gateway_id = "api"
 }
