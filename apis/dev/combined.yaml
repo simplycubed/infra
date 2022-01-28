@@ -6,19 +6,22 @@ info:
 paths:
   /healthz:
     get:
+      operationId: getHealthz
       responses:
         '200':
           description: 'OK'
       summary: Health
   /:
     get:
+      operationId: getHealth
       responses:
         '200':
           description: 'OK'
       summary: Health
   /providers:
     get:
-      summary: get all providers
+      operationId: getProviders
+      summary: get providers
       security:
         - Bearer: [ ]
       parameters:
@@ -53,6 +56,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /providers/{provider_id}:
     get:
+      operationId: getProviderById
       summary: get provider by ID
       security:
         - Bearer: [ ]
@@ -81,7 +85,8 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /providers/{provider_id}/releases:
     get:
-      summary: get all releases by provider ID
+      operationId: getReleasesByProviderId
+      summary: get releases by provider ID
       security:
         - Bearer: [ ]
       parameters:
@@ -111,6 +116,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /releases/{provider_id}/{release_id}:
     get:
+      operationId: getReleaseById
       summary: get release by ID
       security:
         - Bearer: [ ]
@@ -144,7 +150,8 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /releases/{provider_id}/{release_id}/attributes:
     get:
-      summary: get all attributes of release by ID
+      operationId: getAttributesByReleaseId
+      summary: get attributes of release by ID
       security:
         - Bearer: [ ]
       parameters:
@@ -179,6 +186,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /releases/{provider_id}/{release_id}/{attribute_id}/details:
     get:
+      operationId: getAttributeDetailsByAttributeId
       summary: get attributes details
       security:
         - Bearer: [ ]
@@ -217,6 +225,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /resources/{provider_id}/{release_id}:
     get:
+      operationId: getResourceSchemasByReleaseId
       summary: get resource schemas
       security:
         - Bearer: [ ]
@@ -252,6 +261,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /resources/{provider_id}/{release_id}/{resource_id}:
     get:
+      operationId: getResourceSchemaAttributesById
       summary: get resource schema attributes
       security:
         - Bearer: [ ]
@@ -292,6 +302,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /resources/{provider_id}/{release_id}/{resource_id}/{attribute_id}:
     get:
+      operationId: getResourceSchemaAttributeById
       summary: get resource schema attributes
       security:
         - Bearer: [ ]
@@ -335,6 +346,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /datasources/{provider_id}/{release_id}:
     get:
+      operationId: getDataSourceSchemasByReleaseId
       summary: get data source schemas
       security:
         - Bearer: [ ]
@@ -370,7 +382,8 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /datasources/{provider_id}/{release_id}/{datasource_id}:
     get:
-      summary: get datasource schema attributes
+      operationId: getDataSourceSchemasAttributesById
+      summary: get data source schema attributes
       security:
         - Bearer: [ ]
       parameters:
@@ -410,7 +423,8 @@ paths:
             $ref: '#/definitions/ErrorResponse'
   /datasources/{provider_id}/{release_id}/{datasource_id}/{attribute_id}:
     get:
-      summary: get datasource schema attributes
+      operationId: getDataSourceSchemaAttributeById
+      summary: get data source schema attributes
       security:
         - Bearer: [ ]
       parameters:
