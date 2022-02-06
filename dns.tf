@@ -54,7 +54,7 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "\"v=DKIM1; k=rsa; p=${var.google_domainkey}\""
+        "\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSUwk9QflOAxFC3KgUMhLim9u4/aJmnqX7MvsEdDW67m4yTw7JG/ead5B2i6nuPMmoM/Y/BUPNw2YPS+AJHlS9BOQUiLBI/IC6tJFx857mhPyTUxsXrKg/8I71HiVSdSZNgO1b4WMgOrK3/zNanEUP+eOxCDZpdH5hclTniAW0HaBBk/REYHfeACy6x4sOQQW\" \"0e4biZccCOr+AF5JTSXFhSkn+KFwk5LProV/iZRi+gjHeCOe9H8r/m4LwmjcsaNoosumENbYUkCb6PvLDY0xeoQpDi8Q1bWiHjzaXRqtuq4DN36IckrQNdXPHeXTXsY3Em/8XIjKHa67zBqFbd4XwIDAQAB\""
       ]
     },
     {
@@ -73,6 +73,46 @@ module "dns" {
       ttl  = 300
       records = [
         "\"v=DMARC1;\" \"p=quarantine;\" \"rua=mailto:dmarc@${var.base_domain};\" \"ruf=mailto:dmarc@${var.base_domain};\" \"fo=1:d:s\""
+      ]
+    },
+    {
+      name = "cal"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
+    {
+      name = "drive"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
+    {
+      name = "mail"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
+    {
+      name = "groups"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
+    {
+      name = "sites"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
       ]
     },
     {
