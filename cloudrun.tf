@@ -9,9 +9,9 @@ module "builder_api" {
   env = [
     { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
+    { key = "FIREBASE_URL", value = "${var.project}.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FIRESTORE_PROJECT_ID", value = "simplycubed-builder-${var.env}" },
+    { key = "FIRESTORE_PROJECT_ID", value = "${var.project}" },
     { key = "FRONTEND_URL", value = "https://app.${var.base_domain}" }
   ]
   volumes = [
@@ -30,10 +30,10 @@ module "registry_api" {
   env = [
     { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
+    { key = "FIREBASE_URL", value = "${var.project}.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FIRESTORE_PROJECT_ID", value = "simplycubed-builder-${var.env}" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.${var.base_domain}" }
+    { key = "FIRESTORE_PROJECT_ID", value = "${var.project}" },
+    { key = "FRONTEND_URL", value = "https://app.${var.base_domain}" }
   ]
   volumes = [
     { path = "/etc/secrets", secret = "projects/${var.project_id}/secrets/firebase-service-account", versions = { "firebase.json" = "latest" } }
@@ -52,10 +52,10 @@ module "registry_etl" {
   env = [
     { key = "ENV", value = "${var.env}" },
     { key = "ALLOWED_ORIGIN", value = "*" },
-    { key = "FIREBASE_URL", value = "simplycubed-builder-${var.env}.firebaseapp.com" },
+    { key = "FIREBASE_URL", value = "${var.project}.firebaseapp.com" },
     { key = "FIREBASE_CREDENTIALS", value = "/etc/secrets/firebase.json" },
-    { key = "FIRESTORE_PROJECT_ID", value = "simplycubed-builder-${var.env}" },
-    { key = "FRONTEND_URL", value = "https://app.simplycubed.${var.base_domain}" }
+    { key = "FIRESTORE_PROJECT_ID", value = "${var.project}" },
+    { key = "FRONTEND_URL", value = "https://app.${var.base_domain}" }
   ]
   volumes = [
     { path = "/etc/secrets", secret = "projects/${var.project_id}/secrets/firebase-service-account", versions = { "firebase.json" = "latest" } }

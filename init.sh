@@ -11,19 +11,19 @@
 # gcloud alpha billing accounts list --filter=open=true
 #
 
-# DEV: simplycubed-builder-dev
-# export PROJECT_NAME="simplycubed-builder-dev"
-# export ORGANIZATION_ID="1013393027722"
+# DEV: devopsui-dev
+# export PROJECT_NAME="devopsui-dev"
+# export ORGANIZATION_ID="691565555817"
 # export BILLING_ACCOUNT_ID="false"
 # export CREATE_SERVICE_ACCOUNT_KEY="false"
-# export SUPPORT_EMAIL="support@simplycubed.com"
+# export SUPPORT_EMAIL="support@devopsui.dev"
 #
-# PROD: simplycubed-builder-prod
-# export PROJECT_NAME="simplycubed-builder-prod"
-# export ORGANIZATION_ID="1013393027722"
+# PROD: devopsui-prod
+# export PROJECT_NAME="devopsui-prod"
+# export ORGANIZATION_ID="691565555817"
 # export BILLING_ACCOUNT_ID="false"
 # export CREATE_SERVICE_ACCOUNT_KEY="false"
-# export SUPPORT_EMAIL="support@simplycubed.com"
+# export SUPPORT_EMAIL="support@devopsui.com"
 #
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
 #
@@ -95,8 +95,6 @@ gcloud --project $project_id services enable secretmanager.googleapis.com
 gcloud --project $project_id services enable servicecontrol.googleapis.com
 gcloud --project $project_id services enable servicemanagement.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
-# gcloud --project $project_id services enable sql-component.googleapis.com
-# gcloud --project $project_id services enable sqladmin.googleapis.com
 
 # TODO: Monitor this new feature request to automate Enabling the Identity Platform
 echo "=> Need to manually 'Enable Identity Platform', this is a known limitation"

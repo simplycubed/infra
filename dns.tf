@@ -1,7 +1,3 @@
-locals {
-  google_site_verification = var.env == "prod" ? "E-DNc34OmbkUPcUw9FrzN9RN9WdGW6dk7FuD3NLYoic" : "TvTmlk3mbvtg38d3xFCZUJHT-vXkbgzV6CXHoiL2v0o"
-}
-
 module "dns" {
   source     = "terraform-google-modules/cloud-dns/google"
   type       = "public"
@@ -9,23 +5,6 @@ module "dns" {
   name       = "builder-dns"
   domain     = "${var.base_domain}."
   recordsets = [
-    {
-      name = "www"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "20913630.group30.sites.hubspot.net.",
-      ]
-    },
-    {
-      name = ""
-      type = "A"
-      ttl  = 60
-      records = [
-        "199.60.103.31",
-        "199.60.103.131"
-      ]
-    },
     {
       name = "app"
       type = "A"
@@ -35,7 +14,7 @@ module "dns" {
       ]
     },
     {
-      name = "api"
+      name = "builder"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -44,14 +23,6 @@ module "dns" {
     },
     {
       name = "registry"
-      type = "A"
-      ttl  = 60
-      records = [
-        "199.36.158.100",
-      ]
-    },
-    {
-      name = "registry-api"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -83,7 +54,7 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "\"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCkjnypyAHInjvAovmpZH8+IkEyaHEWhmWTZMjMdF1ApsniivkaJMm3OmFu4IoHPNYu8z/FAvARg+Yr4sEdkSUXCaBwjYay6QFP7FFcb9PEvFRB7Q/VLRnFcejgNG4vWuR4fHi40roK6OpJZUhjtA9v92hcDaQGi8SW1pOq1C3dRQIDAQAB\""
+        "\"v=DKIM1; k=rsa; p=${var.google_domainkey}\""
       ]
     },
     {
@@ -91,8 +62,8 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "google-site-verification=${local.google_site_verification}",
-        "firebase=simplycubed-builder-${var.env}",
+        "google-site-verification=${var.google_site_verification}",
+        "firebase=${var.project}",
         "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com ~all\""
       ]
     },
@@ -101,47 +72,7 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "\"v=DMARC1;\" \"p=quarantine;\" \"rua=mailto:dmarc@simplycubed.uriports.com;\" \"ruf=mailto:dmarc@simplycubed.uriports.com;\" \"fo=1:d:s\""
-      ]
-    },
-    {
-      name = "cal"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "drive"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "mail"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "groups"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "sites"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
+        "\"v=DMARC1;\" \"p=quarantine;\" \"rua=mailto:dmarc@${var.base_domain};\" \"ruf=mailto:dmarc@${var.base_domain};\" \"fo=1:d:s\""
       ]
     },
     {
@@ -149,7 +80,7 @@ module "dns" {
       type = "CNAME"
       ttl  = 60
       records = [
-        "mail-simplycubed-com.dkim1._domainkey.firebasemail.com.",
+        "mail-devopsui-com.dkim1._domainkey.firebasemail.com.",
       ]
     },
     {
@@ -157,7 +88,7 @@ module "dns" {
       type = "CNAME"
       ttl  = 60
       records = [
-        "mail-simplycubed-com.dkim2._domainkey.firebasemail.com.",
+        "mail-devopsui-com.dkim2._domainkey.firebasemail.com.",
       ]
     },
     {

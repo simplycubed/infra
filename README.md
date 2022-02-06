@@ -1,4 +1,4 @@
-# builder-infra
+# infra
 
 This project contains the Terraform configuration for GCP including an init script to enable GCP project APIs and create a Terraform service account.
 
@@ -8,20 +8,20 @@ This project contains the Terraform configuration for GCP including an init scri
 - Create a Terraform Cloud Workspace to manage the GCP project
 - Install gcloud CLI and login to the GCP Project
 - Login with gcloud `gcloud auth login`
-- Dev - `gcloud config set project simplycubed-builder-dev`
-- Prod - `gcloud config set project simplycubed-builder-prod`
+- Dev - `gcloud config set project infra-dev`
+- Prod - `gcloud config set project infra-prod`
 - Execute the following init script
 
 ```bash
 # DEV
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
-./init.sh simplycubed-builder-dev 1013393027722 false true support@simplycubed.com
+./init.sh infra-dev 691565555817 false false support@devopsui.dev
 ```
 
 ```bash
 # PROD
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
-./init.sh simplycubed-builder-prod 1013393027722 false false support@simplycubed.com
+./init.sh infra-prod 691565555817 false false support@devopsui.com
 ```
 
 - Terraform service account will be generated with access *key.json*.
@@ -37,11 +37,11 @@ This project contains the Terraform configuration for GCP including an init scri
 ## OAuth Concent Screen
 
 - App name: `OAUTH Tooling`
-- User support email: `support@simplycubed.com`
-- Authorized domains: 
-  - `simplycubed.dev`
-  - `simplycubed.com` - not required for PROD
-- Developer Contact information: `support@simplycubed.com`
+- User support email: `support@devopsui.com`
+- Authorized domains:
+  - `devopsui.dev`
+  - `devopsui.com` - not required for PROD
+- Developer Contact information: `support@devopsui.com`
 
 ## Support Email Group for IAP
 
@@ -82,10 +82,10 @@ ns-cloud-*.googledomains.com.
 
 | Key  | Value |
 |---|---|
-| project_id | simplycubed-builder-dev |
+| project_id | devopsui-ENV |
 | region | us-central1 |
 | credentials | SENSITIVE |
-| base_domain | simplycubed.dev or simplycubed.com |
+| base_domain | devopsui.dev or devopsui.com |
 | iap_brand_name | projects/${project_number}/brands/${brand_number} |
 
 ## Test Private Cloud Run instances

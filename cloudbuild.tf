@@ -4,7 +4,7 @@
 resource "google_cloudbuild_trigger" "push_firebase_base_image" {
   name = "push-firebase-base-image"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "firebase"
     push {
       branch = "^main$"
@@ -20,7 +20,7 @@ resource "google_cloudbuild_trigger" "push_firebase_base_image" {
 resource "google_cloudbuild_trigger" "push_golang_base_image" {
   name = "push-golang-base-image"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "golang"
     push {
       branch = "^main$"
@@ -36,56 +36,8 @@ resource "google_cloudbuild_trigger" "push_golang_base_image" {
 resource "google_cloudbuild_trigger" "push_node_base_image" {
   name = "push-node-base-image"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "node"
-    push {
-      branch = "^main$"
-    }
-  }
-  filename = "cloudbuild.yaml"
-  tags     = ["managed by terraform"]
-}
-
-#
-# nginx
-#
-resource "google_cloudbuild_trigger" "push_nginx_base_image" {
-  name = "push-nginx-base-image"
-  github {
-    owner = "simplycubed"
-    name  = "nginx"
-    push {
-      branch = "^main$"
-    }
-  }
-  filename = "cloudbuild.yaml"
-  tags     = ["managed by terraform"]
-}
-
-#
-# python
-#
-resource "google_cloudbuild_trigger" "push_python_base_image" {
-  name = "push-python-base-image"
-  github {
-    owner = "simplycubed"
-    name  = "python"
-    push {
-      branch = "^main$"
-    }
-  }
-  filename = "cloudbuild.yaml"
-  tags     = ["managed by terraform"]
-}
-
-#
-# ruby
-#
-resource "google_cloudbuild_trigger" "push_ruby_base_image" {
-  name = "push-ruby-base-image"
-  github {
-    owner = "simplycubed"
-    name  = "ruby"
     push {
       branch = "^main$"
     }
@@ -100,7 +52,7 @@ resource "google_cloudbuild_trigger" "push_ruby_base_image" {
 resource "google_cloudbuild_trigger" "push_yq_base_image" {
   name = "push-yq-base-image"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "yq"
     push {
       branch = "^main$"
@@ -116,7 +68,7 @@ resource "google_cloudbuild_trigger" "push_yq_base_image" {
 resource "google_cloudbuild_trigger" "deploy_builder_web" {
   name = "deploy-builder-web"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "builder-web"
     push {
       tag    = var.env == "prod" ? "^production-v\\d+\\.\\d+\\.\\d+$" : null
@@ -142,7 +94,7 @@ resource "google_cloudbuild_trigger" "build_builder_web" {
   count = var.env == "prod" ? 0 : 1
   name  = "build-builder-web"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "builder-web"
     pull_request {
       branch = ".*"
@@ -169,7 +121,7 @@ resource "google_cloudbuild_trigger" "build_builder_web" {
 resource "google_cloudbuild_trigger" "deploy_builder_api" {
   name = "deploy-builder-api"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "builder-api"
     push {
       tag    = var.env == "prod" ? "^production-v\\d+\\.\\d+\\.\\d+$" : null
@@ -187,7 +139,7 @@ resource "google_cloudbuild_trigger" "build_builder_api" {
   count = var.env == "prod" ? 0 : 1
   name  = "build-builder-api"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "builder-api"
     pull_request {
       branch = ".*"
@@ -203,7 +155,7 @@ resource "google_cloudbuild_trigger" "build_builder_api" {
 resource "google_cloudbuild_trigger" "deploy_registry_api" {
   name = "deploy-registry-api"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "registry-api"
     push {
       tag    = var.env == "prod" ? "^production-v\\d+\\.\\d+\\.\\d+$" : null
@@ -221,7 +173,7 @@ resource "google_cloudbuild_trigger" "build_registry_api" {
   count = var.env == "prod" ? 0 : 1
   name  = "build-registry-api"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "registry-api"
     pull_request {
       branch = ".*"
@@ -237,7 +189,7 @@ resource "google_cloudbuild_trigger" "build_registry_api" {
 resource "google_cloudbuild_trigger" "deploy_registry_etl" {
   name = "deploy-registry-etl"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "registry-etl"
     push {
       tag    = var.env == "prod" ? "^production-v\\d+\\.\\d+\\.\\d+$" : null
@@ -255,7 +207,7 @@ resource "google_cloudbuild_trigger" "build_registry_etl" {
   count = var.env == "prod" ? 0 : 1
   name  = "build-registry-etl"
   github {
-    owner = "simplycubed"
+    owner = "devopsui"
     name  = "registry-etl"
     pull_request {
       branch = ".*"

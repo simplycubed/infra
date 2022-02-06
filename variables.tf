@@ -6,6 +6,7 @@ variable "builder_api_url" {
   description = "Builder API URL"
 }
 
+# will use the sample-service as the base image
 variable "default_image" {
   description = "Default Cloud Run image used to create instance using Terraform"
 }
@@ -17,6 +18,14 @@ variable "credentials" {
 
 variable "env" {
   description = "Env Name"
+}
+
+variable "google_domainkey" {
+  description = "Google Domain Key"
+}
+
+variable "google_site_verification" {
+  description = "Google Site Verification"
 }
 
 variable "iap_brand_name" {
@@ -35,6 +44,7 @@ variable "region" {
   description = "Region for gcloud resources"
 }
 
+# project settings in firebase.google.com
 variable "firebase_app_id" {
   description = "Firebase App ID"
 }
@@ -55,6 +65,7 @@ variable "firebase_messaging_sender_id" {
   description = "Firebase Messaging Sender ID"
 }
 
+# need to create a github oauth client for devopsui
 variable "github_client_id" {
   description = "GitHub OAuth Client ID"
 }
