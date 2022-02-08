@@ -30,7 +30,7 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "\"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxSUwk9QflOAxFC3KgUMhLim9u4/aJmnqX7MvsEdDW67m4yTw7JG/ead5B2i6nuPMmoM/Y/BUPNw2YPS+AJHlS9BOQUiLBI/IC6tJFx857mhPyTUxsXrKg/8I71HiVSdSZNgO1b4WMgOrK3/zNanEUP+eOxCDZpdH5hclTniAW0HaBBk/REYHfeACy6x4sOQQW\" \"0e4biZccCOr+AF5JTSXFhSkn+KFwk5LProV/iZRi+gjHeCOe9H8r/m4LwmjcsaNoosumENbYUkCb6PvLDY0xeoQpDi8Q1bWiHjzaXRqtuq4DN36IckrQNdXPHeXTXsY3Em/8XIjKHa67zBqFbd4XwIDAQAB\""
+        "${var.google_domainkey}"
       ]
     },
     {
