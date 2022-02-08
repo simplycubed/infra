@@ -12,7 +12,7 @@
 #
 
 # simplycubed-fcbc1
-# export PROJECT_NAME="simplycubed"
+# export PROJECT_NAME="simplycubed-fcbc1"
 # export ORGANIZATION_ID="1013393027722"
 # export BILLING_ACCOUNT_ID="false"
 # export CREATE_SERVICE_ACCOUNT_KEY="true"
