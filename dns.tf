@@ -2,39 +2,15 @@ module "dns" {
   source     = "terraform-google-modules/cloud-dns/google"
   type       = "public"
   project_id = var.project_id
-  name       = "builder-dns"
+  name       = "simplycubed-dns"
   domain     = "${var.base_domain}."
   recordsets = [
     {
-      name = "app"
+      name = "www"
       type = "A"
       ttl  = 60
       records = [
         "199.36.158.100",
-      ]
-    },
-    {
-      name = "builder"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "registry"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "registry-etl"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
       ]
     },
     {
@@ -101,14 +77,6 @@ module "dns" {
     },
     {
       name = "groups"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "ghs.googlehosted.com.",
-      ]
-    },
-    {
-      name = "sites"
       type = "CNAME"
       ttl  = 60
       records = [

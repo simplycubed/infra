@@ -37,3 +37,7 @@ variable "firebase_storage_bucket" {
 variable "firebase_messaging_sender_id" {
   description = "Firebase Messaging Sender ID"
 }
+
+variable "firebase_measurement_id" {
+  description = "Firebase Measurement ID"
+}
