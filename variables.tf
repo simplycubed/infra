@@ -11,7 +11,11 @@ variable "google_site_verification" {
 }
 
 variable "project_id" {
-  description = "Project for gcloud resources"
+  description = "Project ID"
+}
+
+variable "project_name" {
+  description = "Project Name"
 }
 
 variable "region" {
