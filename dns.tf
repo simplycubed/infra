@@ -39,7 +39,7 @@ module "dns" {
       ttl  = 300
       records = [
         "google-site-verification=${var.google_site_verification}",
-        "firebase=${var.project}",
+        "firebase=${var.project_id}",
         "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com ~all\""
       ]
     },
