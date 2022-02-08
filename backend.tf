@@ -1,10 +1,10 @@
 terraform {
   cloud {
-    organization = "devopsui"
+    organization = "simplycubed"
     hostname     = "app.terraform.io"
 
     workspaces {
-      tags = ["builder"]
+      tags = ["simplycubed-infra"]
     }
   }
 }

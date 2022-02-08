@@ -11,20 +11,13 @@
 # gcloud alpha billing accounts list --filter=open=true
 #
 
-# DEV: devopsui-dev
-# export PROJECT_NAME="devopsui-dev"
-# export ORGANIZATION_ID="691565555817"
+# simplycubed-fcbc1
+# export PROJECT_NAME="simplycubed"
+# export ORGANIZATION_ID="1013393027722"
 # export BILLING_ACCOUNT_ID="false"
-# export CREATE_SERVICE_ACCOUNT_KEY="false"
-# export SUPPORT_EMAIL="support@devopsui.dev"
-#
-# PROD: devopsui-prod
-# export PROJECT_NAME="devopsui-prod"
-# export ORGANIZATION_ID="691565555817"
-# export BILLING_ACCOUNT_ID="false"
-# export CREATE_SERVICE_ACCOUNT_KEY="false"
-# export SUPPORT_EMAIL="support@devopsui.com"
-#
+# export CREATE_SERVICE_ACCOUNT_KEY="true"
+# export SUPPORT_EMAIL="support@simplycubed.com"
+
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
 #
 # Initial execution set CREATE_SERVICE_ACCOUNT_KEY to "true" however subsequent runs to "false"
@@ -75,9 +68,6 @@ fi
 # Full list of services
 # gcloud services list --available
 echo "=> Enabling required APIs"
-gcloud --project $project_id services enable apigateway.googleapis.com
-gcloud --project $project_id services enable bigquery.googleapis.com
-gcloud --project $project_id services enable bigquerystorage.googleapis.com
 gcloud --project $project_id services enable cloudbilling.googleapis.com
 gcloud --project $project_id services enable cloudbuild.googleapis.com
 gcloud --project $project_id services enable cloudfunctions.googleapis.com
@@ -87,18 +77,10 @@ gcloud --project $project_id services enable compute.googleapis.com
 gcloud --project $project_id services enable container.googleapis.com
 gcloud --project $project_id services enable dns.googleapis.com
 gcloud --project $project_id services enable iam.googleapis.com
-gcloud --project $project_id services enable iap.googleapis.com
-gcloud --project $project_id services enable identitytoolkit.googleapis.com
-gcloud --project $project_id services enable oslogin.googleapis.com
-gcloud --project $project_id services enable redis.googleapis.com
 gcloud --project $project_id services enable secretmanager.googleapis.com
 gcloud --project $project_id services enable servicecontrol.googleapis.com
 gcloud --project $project_id services enable servicemanagement.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
-
-# TODO: Monitor this new feature request to automate Enabling the Identity Platform
-echo "=> Need to manually 'Enable Identity Platform', this is a known limitation"
-echo "=> https://issuetracker.google.com/issues/186147991?pli=1#comment6"
 
 echo "=> Project APIs enabled successfully"
 
@@ -133,9 +115,6 @@ gcloud projects add-iam-policy-binding $project_id \
   --role="roles/container.admin"
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
-  --role="roles/iap.settingsAdmin"
-gcloud projects add-iam-policy-binding $project_id \
-  --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
   --role="roles/iam.roleAdmin"
 gcloud projects add-iam-policy-binding $project_id \
   --member "serviceAccount:terraform@${project_id}.iam.gserviceaccount.com" \
@@ -146,20 +125,3 @@ if [ "$CREATE_SERVICE_ACCOUNT_KEY" = true ]; then
   gcloud iam service-accounts keys create key.json \
     --iam-account "terraform@${project_id}.iam.gserviceaccount.com"
 fi
-
-# Create OAUTH Brand Application
-IAP_BRAND_NAME=$(gcloud alpha iap oauth-brands list --project $project_id | grep name | cut -f 2 -d ' ' | head -n 1)
-
-oauth_exists=$(gcloud alpha iap oauth-brands list --project $project_id | grep name | cut -f 2 -d ' ')
-if [ "$oauth_exists" = "0" ]; then
-  gcloud alpha iap oauth-brands create --application_title="OAUTH Tooling" --support_email=$SUPPORT_EMAIL --project $project_id
-  IAP_BRAND_NAME=$(gcloud alpha iap oauth-brands list --project $project_id | grep name | cut -f 2 -d ' ' | head -n 1)
-  echo "=> Create OAUTH Brand Application"
-else
-  echo "=> OAUTH Brand Application already exists"
-fi
-
-echo "OUTPUT"
-echo "================================="
-echo "IAP BRAND NAME: $IAP_BRAND_NAME"
-echo "================================="

@@ -8,20 +8,12 @@ This project contains the Terraform configuration for GCP including an init scri
 - Create a Terraform Cloud Workspace to manage the GCP project
 - Install gcloud CLI and login to the GCP Project
 - Login with gcloud `gcloud auth login`
-- Dev - `gcloud config set project infra-dev`
-- Prod - `gcloud config set project infra-prod`
+- Prod - `gcloud config set project simplycubed-fcbc1`
 - Execute the following init script
 
 ```bash
-# DEV
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
-./init.sh infra-dev 691565555817 false false support@devopsui.dev
-```
-
-```bash
-# PROD
-# ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
-./init.sh infra-prod 691565555817 false false support@devopsui.com
+./init.sh simplycubed-fcbc1 691565555817 false false support@simplycubed.com
 ```
 
 - Terraform service account will be generated with access *key.json*.
@@ -32,28 +24,7 @@ This project contains the Terraform configuration for GCP including an init scri
 
 ## DNS
 
-- Cloud Run Domain Mapping requires adding the Terraform user to Google Domains to verify the domain and generate TLs certificates.
-
-## OAuth Concent Screen
-
-- App name: `OAUTH Tooling`
-- User support email: `support@devopsui.com`
-- Authorized domains:
-  - `devopsui.dev`
-  - `devopsui.com` - not required for PROD
-- Developer Contact information: `support@devopsui.com`
-
-## Support Email Group for IAP
-
-- Create an email group in [Google Workspace](https://groups.google.com)
-- Set the Terraform service account created by the init script as the owner of the group
-  - `terraform@${project_id}.iam.gserviceaccount.com`
-
-## IAP Brand Name
-
-- IAP brand name will ge generated in output of init script.
-- The Brand Name ID is only displayed after the OAuth consent screen is configured. 
-- The init script references the `OAUTH Tooling` name when searching for the Brand Name ID.
+- Cloud Run Domain Mapping requires adding the Terraform user to Google Domains to verify the domain and generate TLS certificates.
 
 ## DNS Configuration
 
@@ -82,23 +53,10 @@ ns-cloud-*.googledomains.com.
 
 | Key  | Value |
 |---|---|
-| project_id | devopsui-ENV |
+| project_id | simplycubed-fcbc1 |
 | region | us-central1 |
 | credentials | SENSITIVE |
 | base_domain | devopsui.dev or devopsui.com |
-| iap_brand_name | projects/${project_number}/brands/${brand_number} |
-
-## Test Private Cloud Run instances
-
-Curl private Cloud Run services
-
-```bash
-
-alias gcurl='curl --header "Authorization: Bearer $(gcloud auth print-identity-token)"'
-
-gcurl https://private.somedomain.com
-
-```
 
 ## Resources
 
