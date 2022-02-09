@@ -14,7 +14,7 @@ module "second" {
   skip_download                     = true
   use_tf_google_credentials_env_var = true
   create_cmd_body                   = "beta functions list --project ${var.project_id} --regions=${var.region}"
-  module_depends_on = [
-    module.first
+  depends_on = [
+    module.first.null_resource.download_gcloud[0]
   ]
 }
