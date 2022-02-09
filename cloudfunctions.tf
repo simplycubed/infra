@@ -15,6 +15,6 @@ module "second" {
   use_tf_google_credentials_env_var = true
   create_cmd_body                   = "beta functions list --project ${var.project_id} --regions=${var.region}"
   depends_on = [
-    module.first.null_resource.download_gcloud[0]
+    module.first
   ]
 }
