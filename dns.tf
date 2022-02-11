@@ -30,7 +30,7 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "${var.google_domainkey}"
+        "\"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCkjnypyAHInjvAovmpZH8+IkEyaHEWhmWTZMjMdF1ApsniivkaJMm3OmFu4IoHPNYu8z/FAvARg+Yr4sEdkSUXCaBwjYay6QFP7FFcb9PEvFRB7Q/VLRnFcejgNG4vWuR4fHi40roK6OpJZUhjtA9v92hcDaQGi8SW1pOq1C3dRQIDAQAB\""
       ]
     },
     {

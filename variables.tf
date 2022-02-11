@@ -2,10 +2,6 @@ variable "base_domain" {
   description = "Base domain for DNS records"
 }
 
-variable "google_domainkey" {
-  description = "Google Domain Key"
-}
-
 variable "google_site_verification" {
   description = "Google Site Verification"
 }
