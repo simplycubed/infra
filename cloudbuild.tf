@@ -15,6 +15,22 @@ resource "google_cloudbuild_trigger" "push_firebase_base_image" {
 }
 
 #
+# node
+#
+resource "google_cloudbuild_trigger" "push_node_base_image" {
+  name = "push-node-base-image"
+  github {
+    owner = "simplycubed"
+    name  = "node"
+    push {
+      branch = "^main$"
+    }
+  }
+  filename = "cloudbuild.yaml"
+  tags     = ["managed by terraform"]
+}
+
+#
 # simplycubed-web
 #
 resource "google_cloudbuild_trigger" "deploy_simplycubed_web" {
