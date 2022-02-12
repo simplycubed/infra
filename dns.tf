@@ -15,6 +15,14 @@ module "dns" {
     },
     {
       name = ""
+      type = "A"
+      ttl  = 60
+      records = [
+        "199.36.158.100",
+      ]
+    },
+    {
+      name = ""
       type = "MX"
       ttl  = 300
       records = [
