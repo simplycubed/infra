@@ -99,7 +99,7 @@ module "dns" {
       ]
     },
     {
-      name = "em9068"
+      name = "em4847"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -123,7 +123,7 @@ module "dns" {
       ]
     },
     {
-      name = "url8745"
+      name = "url5910"
       type = "CNAME"
       ttl  = 60
       records = [
