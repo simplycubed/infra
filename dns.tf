@@ -39,7 +39,7 @@ module "dns" {
       ttl  = 300
       records = [
         "google-site-verification=${var.google_site_verification}",
-        "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com ~all\""
+        "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com include:sendgrid.net ~all\""
       ]
     },
     {
@@ -83,23 +83,7 @@ module "dns" {
       ]
     },
     {
-      name = "firebase1._domainkey"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "mail-devopsui-com.dkim1._domainkey.firebasemail.com.",
-      ]
-    },
-    {
-      name = "firebase2._domainkey"
-      type = "CNAME"
-      ttl  = 60
-      records = [
-        "mail-devopsui-com.dkim2._domainkey.firebasemail.com.",
-      ]
-    },
-    {
-      name = "23352241"
+      name = "25532353"
       type = "CNAME"
       ttl  = 60
       records = [
@@ -107,11 +91,11 @@ module "dns" {
       ]
     },
     {
-      name = "em7387"
+      name = "em9068"
       type = "CNAME"
       ttl  = 60
       records = [
-        "u23352241.wl242.sendgrid.net.",
+        "u25532353.wl104.sendgrid.net.",
       ]
     },
     {
@@ -119,7 +103,7 @@ module "dns" {
       type = "CNAME"
       ttl  = 60
       records = [
-        "s1.domainkey.u23352241.wl242.sendgrid.net.",
+        "s1.domainkey.u25532353.wl104.sendgrid.net.",
       ]
     },
     {
@@ -127,11 +111,11 @@ module "dns" {
       type = "CNAME"
       ttl  = 60
       records = [
-        "s2.domainkey.u23352241.wl242.sendgrid.net.",
+        "s2.domainkey.u25532353.wl104.sendgrid.net.",
       ]
     },
     {
-      name = "url3202"
+      name = "url8745"
       type = "CNAME"
       ttl  = 60
       records = [
