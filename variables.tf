@@ -2,8 +2,8 @@ variable "base_domain" {
   description = "Base domain for DNS records"
 }
 
-variable "google_site_verification" {
-  description = "Google Site Verification"
+variable "env" {
+  description = "Environment"
 }
 
 variable "project_id" {

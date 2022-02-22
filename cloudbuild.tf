@@ -39,10 +39,11 @@ resource "google_cloudbuild_trigger" "deploy_simplycubed_web" {
     owner = "simplycubed"
     name  = "simplycubed-web"
     push {
-      branch = "^main$"
+      branch = var.env == "prod" ? "^main$" : "^dev$"
     }
   }
   substitutions = {
+    _ENV                          = var.env
     _FIREBASE_API_KEY             = var.firebase_api_key
     _FIREBASE_APP_ID              = var.firebase_app_id
     _FIREBASE_AUTH_DOMAIN         = var.firebase_auth_domain
@@ -55,7 +56,8 @@ resource "google_cloudbuild_trigger" "deploy_simplycubed_web" {
 }
 
 resource "google_cloudbuild_trigger" "build_simplycubed_web" {
-  name = "build-simplycubed-web"
+  count = var.env == "prod" ? 0 : 1
+  name  = "build-simplycubed-web"
   github {
     owner = "simplycubed"
     name  = "simplycubed-web"
@@ -64,6 +66,7 @@ resource "google_cloudbuild_trigger" "build_simplycubed_web" {
     }
   }
   substitutions = {
+    _ENV                          = var.env
     _FIREBASE_API_KEY             = var.firebase_api_key
     _FIREBASE_APP_ID              = var.firebase_app_id
     _FIREBASE_AUTH_DOMAIN         = var.firebase_auth_domain
@@ -74,4 +77,3 @@ resource "google_cloudbuild_trigger" "build_simplycubed_web" {
   filename = "cloudbuild.pr.yaml"
   tags     = ["managed by terraform"]
 }
-

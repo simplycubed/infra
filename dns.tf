@@ -46,7 +46,6 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "google-site-verification=${var.google_site_verification}",
         "\"v=spf1 include:_spf.google.com include:_spf.firebasemail.com include:sendgrid.net ~all\""
       ]
     },
