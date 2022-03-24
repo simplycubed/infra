@@ -54,7 +54,7 @@ module "dns" {
       type = "TXT"
       ttl  = 300
       records = [
-        "\"v=DMARC1;\" \"p=quarantine;\" \"rua=mailto:dmarc@${var.base_domain};\" \"ruf=mailto:dmarc@${var.base_domain};\" \"fo=1:d:s\""
+        "\"v=DMARC1;\" \"p=quarantine;\" \"rua=mailto:dmarc@simplycubed.uriports.com;\" \"ruf=mailto:dmarc@simplycubed.uriports.com;\" \"fo=1:d:s\""
       ]
     },
     {
