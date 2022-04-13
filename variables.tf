@@ -2,6 +2,12 @@ variable "base_domain" {
   description = "Base domain for DNS records"
 }
 
+variable "default_image" {
+  description = "Default Cloud Run image used to create instance using Terraform"
+  type        = string
+  default     = null
+}
+
 variable "env" {
   description = "Environment"
 }

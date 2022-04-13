@@ -4,7 +4,7 @@ terraform {
     hostname     = "app.terraform.io"
 
     workspaces {
-      tags = ["simplycubed-infra"]
+      tags = ["infra"]
     }
   }
 }

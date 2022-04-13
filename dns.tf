@@ -137,5 +137,13 @@ module "dns" {
         "bb293bc4951f0d728586ae7bad2676"
       ]
     },
+    {
+      name = "security"
+      type = "CNAME"
+      ttl  = 60
+      records = [
+        "ghs.googlehosted.com.",
+      ]
+    },
   ]
 }

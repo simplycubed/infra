@@ -15,6 +15,22 @@ resource "google_cloudbuild_trigger" "push_firebase_base_image" {
 }
 
 #
+# nginx
+#
+resource "google_cloudbuild_trigger" "push_nginx_base_image" {
+  name = "push-nginx-base-image"
+  github {
+    owner = "simplycubed"
+    name  = "nginx"
+    push {
+      branch = "^main$"
+    }
+  }
+  filename = "cloudbuild.yaml"
+  tags     = ["managed by terraform"]
+}
+
+#
 # node
 #
 resource "google_cloudbuild_trigger" "push_node_base_image" {
@@ -31,13 +47,13 @@ resource "google_cloudbuild_trigger" "push_node_base_image" {
 }
 
 #
-# simplycubed-web
+# web
 #
-resource "google_cloudbuild_trigger" "deploy_simplycubed_web" {
-  name = "deploy-simplycubed-web"
+resource "google_cloudbuild_trigger" "deploy_web" {
+  name = "deploy-web"
   github {
     owner = "simplycubed"
-    name  = "simplycubed-web"
+    name  = "web"
     push {
       branch = var.env == "prod" ? "^main$" : "^dev$"
     }
@@ -55,12 +71,12 @@ resource "google_cloudbuild_trigger" "deploy_simplycubed_web" {
   tags     = ["managed by terraform"]
 }
 
-resource "google_cloudbuild_trigger" "build_simplycubed_web" {
+resource "google_cloudbuild_trigger" "build_web" {
   count = var.env == "prod" ? 0 : 1
-  name  = "build-simplycubed-web"
+  name  = "build-web"
   github {
     owner = "simplycubed"
-    name  = "simplycubed-web"
+    name  = "web"
     pull_request {
       branch = ".*"
     }
