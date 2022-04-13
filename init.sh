@@ -90,6 +90,15 @@ gcloud --project $project_id services enable secretmanager.googleapis.com
 gcloud --project $project_id services enable servicecontrol.googleapis.com
 gcloud --project $project_id services enable servicemanagement.googleapis.com
 gcloud --project $project_id services enable servicenetworking.googleapis.com
+gcloud --project $project_id services enable apigateway.googleapis.com
+
+# Enable additional services
+gcloud --project $project_id services enable binaryauthorization.googleapis.com
+gcloud --project $project_id services enable containeranalysis.googleapis.com
+gcloud --project $project_id services enable deploymentmanager.googleapis.com
+gcloud --project $project_id services enable firebaseextensions.googleapis.com
+gcloud --project $project_id services enable firebasestorage.googleapis.com
+gcloud --project $project_id services enable stackdriver.googleapis.com
 
 echo "=> Project APIs enabled successfully"
 
@@ -140,7 +149,7 @@ if [ "$CREATE_SERVICE_ACCOUNT_KEY" = true ]; then
     --iam-account "terraform@${project_id}.iam.gserviceaccount.com"
 fi
 
-gcloud alpha iap oauth-brands create --application_title="OAUTH Tooling" --support_email=$SUPPORT_EMAIL --project $project_id 2>/dev/null || true
+gcloud alpha iap oauth-brands create --application_title="SimplyCubed" --support_email=$SUPPORT_EMAIL --project $project_id 2>/dev/null || true
 
 IAP_BRAND_NAME=$(gcloud alpha iap oauth-brands list --project $project_id | grep name | cut -f 2 -d ' ')
 

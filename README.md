@@ -24,7 +24,7 @@ This project contains the Terraform configuration for GCP including an init scri
 
 ## OAuth Concent Screen
 
-- App name: `OAUTH Tooling`
+- App name: `SimplyCubed`
 - User support email: `support@simplycubed.com`
 - Authorized domains:
   - `simplycubed.com`
