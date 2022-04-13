@@ -138,7 +138,7 @@ module "dns" {
       ]
     },
     {
-      name = "security"
+      name = "security-policies"
       type = "CNAME"
       ttl  = 60
       records = [
