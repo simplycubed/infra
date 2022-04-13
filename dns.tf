@@ -129,5 +129,13 @@ module "dns" {
         "sendgrid.net.",
       ]
     },
+    {
+      name = "_github-pages-challenge-simplycubed"
+      type = "TXT"
+      ttl  = 300
+      records = [
+        "bb293bc4951f0d728586ae7bad2676"
+      ]
+    },
   ]
 }
