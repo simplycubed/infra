@@ -8,12 +8,12 @@ This project contains the Terraform configuration for GCP including an init scri
 - Create a Terraform Cloud Workspace to manage the GCP project
 - Install gcloud CLI and login to the GCP Project
 - Login with gcloud `gcloud auth login`
-- Prod - `gcloud config set project simplycubed-fcbc1`
+- Prod - `gcloud config set project simplycubed-com-${ENV}`
 - Execute the following init script
 
 ```bash
 # ./init.sh $PROJECT_NAME $ORGANIZATION_ID $BILLING_ACCOUNT_ID $CREATE_SERVICE_ACCOUNT_KEY $SUPPORT_EMAIL
-./init.sh simplycubed-fcbc1 691565555817 false false support@simplycubed.com
+./init.sh simplycubed-com-${ENV} 691565555817 false false support@simplycubed.com
 ```
 
 - Terraform service account will be generated with access *key.json*.
@@ -21,6 +21,41 @@ This project contains the Terraform configuration for GCP including an init scri
 - Configure ./variables.tf values as Variables within the specific environment Workspace in Terraform Cloud.
 - Add terraform service account email as an owner of support email user group in Google Workspace.
 - Queue Plan in Terraform Cloud to confirm the project is configured correctly.
+
+## OAuth Concent Screen
+
+- App name: `OAUTH Tooling`
+- User support email: `support@simplycubed.com`
+- Authorized domains:
+  - `simplycubed.com`
+  - `simplycubed.dev` - not required for PROD
+- Developer Contact information: `support@simplycubed.com`
+
+## Support Email Group for IAP
+
+- Create an email group in [Google Workspace](https://groups.google.com)
+- Set the Terraform service account created by the init script as the owner of the group
+  - `terraform@simplycubed-com-dev.iam.gserviceaccount.com`
+  - `terraform@simplycubed-com-prod.iam.gserviceaccount.com`
+
+<!-- ## Grafana OAuth Credentials
+
+- Go to [OAuth 2.0 Client IDs](https://console.developers.google.com/apis/credentials).
+- Click Create Credentials, then click OAuth Client ID in the drop-down menu
+- Enter the following:
+- Application Type: `Web Application`
+- Name: `Grafana`
+- Authorized JavaScript Origins: `https://grafana.smartpay.re`
+- Authorized Redirect URLs: `https://grafana.smartpay.re/login/google`
+- Click Create
+- Copy the Client ID and Client Secret from the `OAuth Client` modal
+- Provide client Id value to variable *grafana_oauth_client_id* and Secret value to variable *grfana_oauth_secret* -->
+
+## IAP Brand Name
+
+- IAP brand name will ge generated in output of init script.
+- The Brand Name ID is only displayed after the OAuth consent screen is configured.
+- The init script references the `OAUTH Tooling` name when searching for the Brand Name ID.
 
 ## DNS
 
@@ -53,10 +88,10 @@ ns-cloud-*.googledomains.com.
 
 | Key  | Value |
 |---|---|
-| project_id | simplycubed-fcbc1 |
+| project_id | simplycubed-com-${ENV} |
 | region | us-central1 |
 | credentials | SENSITIVE |
-| base_domain | devopsui.dev or devopsui.com |
+| base_domain | simplycubed.dev or simplycubed.com |
 
 ## Resources
 

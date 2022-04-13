@@ -12,14 +12,6 @@ variable "env" {
   description = "Environment"
 }
 
-variable "project_id" {
-  description = "Project ID"
-}
-
-variable "region" {
-  description = "Region for gcloud resources"
-}
-
 variable "firebase_app_id" {
   description = "Firebase App ID"
 }
@@ -42,4 +34,20 @@ variable "firebase_messaging_sender_id" {
 
 variable "firebase_measurement_id" {
   description = "Firebase Measurement ID"
+}
+
+variable "iap_brand_name" {
+  description = "OAuth IAP brand name for gke endpoints"
+}
+
+variable "iap_domain" {
+  description = "Domain used for the environment"
+}
+
+variable "project_id" {
+  description = "Project ID"
+}
+
+variable "region" {
+  description = "Region for gcloud resources"
 }
