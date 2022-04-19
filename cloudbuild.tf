@@ -93,3 +93,39 @@ resource "google_cloudbuild_trigger" "build_web" {
   filename = "cloudbuild.pr.yaml"
   tags     = ["managed by terraform"]
 }
+
+#
+# Security Policies
+#
+resource "google_cloudbuild_trigger" "deploy_security_policies" {
+  name = "deploy-security-policies"
+  github {
+    owner = "simplycubed"
+    name  = "security-policies"
+    push {
+      branch = var.env == "prod" ? "^main$" : "^dev$"
+    }
+  }
+  substitutions = {
+    _ENV = var.env
+  }
+  filename = "cloudbuild.yaml"
+  tags     = ["managed by terraform"]
+}
+
+resource "google_cloudbuild_trigger" "build_security_policies" {
+  count = var.env == "prod" ? 0 : 1
+  name  = "build-security-policies"
+  github {
+    owner = "simplycubed"
+    name  = "security-policies"
+    pull_request {
+      branch = ".*"
+    }
+  }
+  substitutions = {
+    _ENV = var.env
+  }
+  filename = "cloudbuild.pr.yaml"
+  tags     = ["managed by terraform"]
+}
