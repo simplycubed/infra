@@ -77,7 +77,7 @@ resource "google_cloudbuild_trigger" "deploy_security_policies" {
   substitutions = {
     _ENV = var.env
   }
-  filename = "cloudbuild.yaml"
+  filename = "cloudbuild.main.yaml"
   tags     = ["managed by terraform"]
 }
 
@@ -119,7 +119,8 @@ resource "google_cloudbuild_trigger" "deploy_web" {
     _FIREBASE_MESSAGING_SENDER_ID = var.firebase_messaging_sender_id
     _FIREBASE_STORAGE_BUCKET      = var.firebase_storage_bucket
   }
-  filename = "cloudbuild.yaml"
+  # TODO: Rename cloudbuild.yaml to cloudbuild.main.yaml
+  filename = "cloudbuild.yaml" 
   tags     = ["managed by terraform"]
 }
 
