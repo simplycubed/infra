@@ -65,38 +65,38 @@ resource "google_cloudbuild_trigger" "push_pspbuilder_base_image" {
 #
 # Security Policies
 #
-# resource "google_cloudbuild_trigger" "deploy_security_policies" {
-#   name = "deploy-security-policies"
-#   github {
-#     owner = "simplycubed"
-#     name  = "security-policies"
-#     push {
-#       branch = var.env == "prod" ? "^main$" : "^dev$"
-#     }
-#   }
-#   substitutions = {
-#     _ENV = var.env
-#   }
-#   filename = "cloudbuild.main.yaml"
-#   tags     = ["managed by terraform"]
-# }
+resource "google_cloudbuild_trigger" "deploy_security_policies" {
+  name = "deploy-security-policies"
+  github {
+    owner = "simplycubed"
+    name  = "security-policies"
+    push {
+      branch = var.env == "prod" ? "^main$" : "^dev$"
+    }
+  }
+  substitutions = {
+    _ENV = var.env
+  }
+  filename = "cloudbuild.main.yaml"
+  tags     = ["managed by terraform"]
+}
 
-# resource "google_cloudbuild_trigger" "build_security_policies" {
-#   count = var.env == "prod" ? 0 : 1
-#   name  = "build-security-policies"
-#   github {
-#     owner = "simplycubed"
-#     name  = "security-policies"
-#     pull_request {
-#       branch = ".*"
-#     }
-#   }
-#   substitutions = {
-#     _ENV = var.env
-#   }
-#   filename = "cloudbuild.pr.yaml"
-#   tags     = ["managed by terraform"]
-# }
+resource "google_cloudbuild_trigger" "build_security_policies" {
+  count = var.env == "prod" ? 0 : 1
+  name  = "build-security-policies"
+  github {
+    owner = "simplycubed"
+    name  = "security-policies"
+    pull_request {
+      branch = ".*"
+    }
+  }
+  substitutions = {
+    _ENV = var.env
+  }
+  filename = "cloudbuild.pr.yaml"
+  tags     = ["managed by terraform"]
+}
 
 #
 # web
@@ -120,7 +120,7 @@ resource "google_cloudbuild_trigger" "deploy_web" {
     _FIREBASE_STORAGE_BUCKET      = var.firebase_storage_bucket
   }
   # TODO: Rename cloudbuild.yaml to cloudbuild.main.yaml
-  filename = "cloudbuild.yaml" 
+  filename = "cloudbuild.yaml"
   tags     = ["managed by terraform"]
 }
 
