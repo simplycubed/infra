@@ -139,10 +139,10 @@ module "dns" {
     },
     {
       name = "security-policies"
-      type = "CNAME"
+      type = "A"
       ttl  = 60
       records = [
-        "ghs.googlehosted.com.",
+       module.lb-http.external_ip,
       ]
     },
   ]
