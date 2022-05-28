@@ -8,7 +8,7 @@ This project contains the Terraform configuration for GCP including an init scri
 - Create a Terraform Cloud Workspace to manage the GCP project
 - Install gcloud CLI and login to the GCP Project
 - Login with gcloud `gcloud auth login`
-- Prod - `gcloud config set project simplycubed-com-${ENV}`
+- Project - `gcloud config set project simplycubed-com-${ENV}`
 - Execute the following init script
 
 ```bash
@@ -86,11 +86,11 @@ ns-cloud-*.googledomains.com.
 
 ## Terraform Cloud - Variables
 
-| Key  | Value |
-|---|---|
-| project_id | simplycubed-com-${ENV} |
-| region | us-central1 |
-| credentials | SENSITIVE |
+| Key         | Value                              |
+| ----------- | ---------------------------------- |
+| project_id  | simplycubed-com-${ENV}             |
+| region      | us-central1                        |
+| credentials | SENSITIVE                          |
 | base_domain | simplycubed.dev or simplycubed.com |
 
 ## Resources
