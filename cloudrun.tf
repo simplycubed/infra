@@ -1,6 +1,6 @@
 module "security_policies" {
   source              = "simplycubed/cloud-run-cicd-updates/google"
-  version             = "2.2.3"
+  version             = "2.3.2"
   name                = "security-policies"
   image               = "gcr.io/${var.project_id}/${var.default_image}"
   location            = var.region
